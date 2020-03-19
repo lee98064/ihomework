@@ -13,6 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_03_19_112113) do
 
   create_table "users", force: :cascade do |t|
+    t.string "uname"
+    t.string "uimg"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "google_uid"
