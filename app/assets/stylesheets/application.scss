@@ -19,3 +19,8 @@
 *{
 	font-family: 'Noto Sans TC', sans-serif;
 }
+
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}
