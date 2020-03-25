@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 	root 'homepage#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
-  	sessions: 'users/sessions',
   	account_update: "users/registrations", 
   	sign_up: "users/registrations",
   }
