@@ -74,3 +74,5 @@ gem 'bootstrap'
 gem 'simple_form'
 
 gem 'mysql2'
+
+gem "rolify"
