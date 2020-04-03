@@ -44,6 +44,9 @@ nav #nav-item a{
 	font-weight: bold;
 	position: relative;
 }
+nav #nav-item i {
+	display: none;
+}
 nav #nav-item #nav-registration{
 	border: 2px solid #fff;
 	border-radius: 30px;
@@ -126,4 +129,35 @@ nav #nav-item a:hover:after{
 #logo{
 	margin: auto;
 	margin-top: 300px;
+}
+@media screen and (max-width: 756px){
+	nav #nav-item{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #FFF;
+		z-index: 2;
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
+	nav #nav-item{
+		display: flex;
+		justify-content: space-around;
+	}
+	nav #nav-item a{
+		color: #000;
+		font-size: 1.2em;
+		text-align: center;
+		margin: 0;
+	}
+	nav #nav-item i {
+		display: block;
+		margin: auto;
+		font-size: 30px;
+		transition: 0.3s;
+	}
+	nav #nav-item a:hover,i:hover{
+		color: #3a3a3a;
+	}
 }
