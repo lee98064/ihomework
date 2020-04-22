@@ -1,4 +1,4 @@
-class Classroom::HomepageController < Schoolsystem::ClassroomController
+class Classroom::HomepageController < Classroom::ClassroomController
 	def index
 	end
 end
