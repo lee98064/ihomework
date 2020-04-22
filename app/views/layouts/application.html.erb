@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/27049cdd6d.js" crossorigin="anonymous"></script>
+    <!-- <script src="/js/uikit.min.js"></script> -->
+    <!-- <script src="/js/uikit-icons.min.js"></script> -->
   </head>
 
   <body>
@@ -19,7 +21,12 @@
         <a href="/"><i class="fas fa-home fa-fw"></i>首頁</a>
         <a href=""><i class="fas fa-home fa-fw"></i>說明</a>
         <a href=""><i class="fas fa-home fa-fw"></i>關於</a>
-        <a href="/users/sign_in"><i class="fas fa-sign-in-alt fa-fw"></i>登入</a>
+        <% if user_signed_in? %>
+          <a href="/users/sign_out"><i class="fas fa-sign-out-alt fa-fw"></i>登出</a>
+        <% else %>
+          <a href="/users/sign_in"><i class="fas fa-sign-in-alt fa-fw"></i>登入</a>
+        <% end %>
+        
         <!-- <button id="nav-registration" onclick="">註冊</button> -->
       </div>
     </nav>

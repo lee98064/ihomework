@@ -37,7 +37,7 @@
                 <%= f.button :submit, "登入", id: "login-btn", class: "btn btn-block" %>
                 <div id="socialmedia">
                   <h4>社群登入</h4>
-                  <button type="button" class="btn btn-danger btn-block"><i class="fab fa-google fa-fw"></i>Google</button>
+                  <a href="<%= user_google_oauth2_omniauth_authorize_url %>" class="btn btn-danger btn-block"><i class="fab fa-google fa-fw"></i>Google</a>
                 </div>
               <% end %>
             </div>

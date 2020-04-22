@@ -32,6 +32,9 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.omniauth :google_oauth2, "33587468045-5u64c17di2sfgmuu1m7ar3uev9u4cleo.apps.googleusercontent.com", "31qFn-8dyQkLjSLWNJMaioPs", skip_jwt: true
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
