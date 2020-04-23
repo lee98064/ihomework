@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   resources :classrooms do
     resources :votes
+    resources :posts
+    resources :weeknote
   end
 end
