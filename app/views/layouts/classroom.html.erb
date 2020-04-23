@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ClvscProject</title>
+    <title><%= yield :web_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width" />
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'classroom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'classroom', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/27049cdd6d.js" crossorigin="anonymous"></script>
     <!-- <script src="/js/uikit.min.js"></script> -->
     <!-- <script src="/js/uikit-icons.min.js"></script> -->
@@ -15,21 +15,17 @@
   <body>
     <nav>
       <div id="nav-logo">
-        <a href="/">IHomeworkBook</a>
+        <a href="/">所有教室</a>
       </div>
       <div id="nav-item">
         <a href="/"><i class="fas fa-home fa-fw"></i>首頁</a>
-        <a href=""><i class="fas fa-home fa-fw"></i>說明</a>
-        <a href=""><i class="fas fa-home fa-fw"></i>關於</a>
-        <% if user_signed_in? %>
-          <a href="/classrooms"><i class="fas fa-sign-out-alt fa-fw"></i>進入教室</a>
-        <% else %>
-          <a href="/users/sign_in"><i class="fas fa-sign-in-alt fa-fw"></i>登入</a>
-        <% end %>
-        
-        <!-- <button id="nav-registration" onclick="">註冊</button> -->
+        <a href="/"><i class="fas fa-home fa-fw"></i>說明</a>
+        <a href="/"><i class="fas fa-home fa-fw"></i>關於</a>
       </div>
     </nav>
+
+
+
     <%= render "layouts/alert" %>
     <%= render "layouts/notice" %>
     <% if alert or notice%>

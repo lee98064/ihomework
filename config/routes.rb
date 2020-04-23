@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   namespace :classroom do
     get '/', to: "homepage#index"
   end
+
+  resources :classrooms do
+    resources :votes
+  end
 end
