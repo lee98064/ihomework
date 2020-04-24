@@ -18,13 +18,10 @@
         <a href="/classrooms">所有教室</a>
       </div>
       <div id="nav-item">
-        <a href="/"><i class="fas fa-home fa-fw"></i>首頁</a>
-        <a href="/"><i class="fas fa-home fa-fw"></i>說明</a>
-        <a href="/"><i class="fas fa-home fa-fw"></i>關於</a>
+        <a href="/" data-toggle="modal" data-target="#entercode"><i class="fas fa-plus fa-fw"></i>新增代碼</a>
+        <a href="/"><img id="uimg" src="<%= current_user.uimg %>" width="20px" height="20px"><%= current_user.uname[-3..-1] %></a>
       </div>
     </nav>
-
-
 
     <%= render "layouts/alert" %>
     <%= render "layouts/notice" %>
@@ -38,5 +35,25 @@
       </script>
     <% end %>
     <%= yield %>
+    <div class="modal fade" id="entercode" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">輸入教室代碼</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h2 id="entercodetitle">代碼：</h2>
+          <input type="text" name="classcode" id="classcode" placeholder="請填入教室代碼">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">送出</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
