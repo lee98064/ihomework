@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   	omniauth_callbacks: "users/omniauth_callbacks"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  namespace :classroom do
-    get '/', to: "homepage#index"
-  end
+  # namespace :classroom do
+  #   get '/', to: "homepage#index"
+  # end
 
   resources :classrooms do
+    collection do
+      post :addcode
+    end
     resources :votes
     resources :posts
     resources :weeknote

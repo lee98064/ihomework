@@ -19,7 +19,8 @@
       </div>
       <div id="nav-item">
         <a href="/" data-toggle="modal" data-target="#entercode"><i class="fas fa-plus fa-fw"></i>新增代碼</a>
-        <a href="/"><img id="uimg" src="<%= current_user.uimg %>" width="20px" height="20px"><%= current_user.uname[-3..-1] %></a>
+        <a href="/classrooms/new"><i class="fas fa-plus fa-fw"></i>建立教室</a>
+        <a href="/"><img id="uimg" src="<%= uimg(current_user.uimg) %>" width="20px" height="20px"><%= current_user.uname[-3..-1] %></a>
       </div>
     </nav>
 
@@ -46,14 +47,38 @@
         </div>
         <div class="modal-body">
           <h2 id="entercodetitle">代碼：</h2>
-          <input type="text" name="classcode" id="classcode" placeholder="請填入教室代碼">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token ,id: "authtooken" %>
+          <input type="text" name="addcode" id="addcode" placeholder="請填入教室代碼">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">送出</button>
+          <button type="button" class="btn btn-primary" id="addcodesubmit">送出</button>
         </div>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    $("#addcodesubmit").click(function() {
+      $.ajax({
+          url: '/classrooms/addcode',                     
+          type: 'post',
+          dataType: 'json',
+          data: { 
+            authenticity_token: $('#authtooken').val(),
+            addcode: $('#addcode').val()
+          },       
+          error: function (xhr) {
+          
+          },      
+          success: function (response) {
+            if (response['success'] == true){
+              window.location.href = response['classroom']
+            }else{
+
+            }
+          }
+      });
+    });
+  </script>
   </body>
 </html>

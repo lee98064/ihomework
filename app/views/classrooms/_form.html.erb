@@ -1,0 +1,27 @@
+<%= form_with(model: classroom, local: true) do |form| %>
+  <% if classroom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% classroom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "教室名稱"%>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "描述" %>
+    <%= form.text_area :describe, class: "form-control", rows: "10",id: "textck" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "送出",class: "btn btn-primary" %>
+  </div>
+<% end %>
