@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
     resources :votes
     resources :posts
-    resources :weeknote
+    resources :weeknotes
+    resources :testlists
   end
 end

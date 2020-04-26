@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
   
   has_many :classrooms
+  has_many :testlists
   
   def name
 		self.uname

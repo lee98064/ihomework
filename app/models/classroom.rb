@@ -3,12 +3,13 @@ class Classroom < ApplicationRecord
 	resourcify
 	before_create :createaddcode
 	belongs_to :user
+	has_many :testlists
 
 	def createaddcode
 		code = SecureRandom.hex(3)
 		classroom = Classroom.where(addcode: code)
 		while not classroom.empty?
-			code = SecureRandom.urlsafe_base64(8)
+			code = SecureRandom.hex(3)
 			classroom = Classroom.where(addcode: code)
 		end
 		self.addcode = code
