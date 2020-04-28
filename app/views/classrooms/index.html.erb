@@ -1,33 +1,13 @@
 <div style="padding:20px;">
 	<div class="row">
-		<div class="col-md-3">
-			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-			    <h3 class="uk-card-title">Default</h3>
-			    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<% @classrooms.each do |classroom| %>
+			<div class="col-md-3">
+				<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" onclick="location.href='<%= classroom_path(classroom) %>'">
+				    <h3 class="uk-card-title"><%= classroom['name']%></h3>
+				    <p><%= classroom['describe'] %></p>
+				    <span><%= classroom.user.try(:uname)%></span>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-			    <h3 class="uk-card-title">Default</h3>
-			    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-			    <h3 class="uk-card-title">Default</h3>
-			    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-			    <h3 class="uk-card-title">Default</h3>
-			    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			</div>
-		</div>
+		<% end %>
 	</div>
 </div>
-<% @classrooms.each do |classroom| %>
-	<%= classroom['name']%>
-	<%= classroom.user.try(:uname)%>
-
-<% end %>

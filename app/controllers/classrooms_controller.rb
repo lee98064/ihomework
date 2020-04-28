@@ -7,6 +7,7 @@ class  ClassroomsController < ApplicationController
 	end
 
 	def show
+		render :layout => "inclassroom"
 	end
 
 	def new

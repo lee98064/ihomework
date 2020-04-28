@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield :web_title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width" />
+    <%= stylesheet_link_tag 'inclassroom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'classroom', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/27049cdd6d.js" crossorigin="anonymous"></script>
+    <!-- <script src="/js/uikit.min.js"></script> -->
+    <!-- <script src="/js/uikit-icons.min.js"></script> -->
+  </head>
+
+  <body>
+    <nav>
+      <div id="nav-logo">
+        <a href="<%= classroom_path(@classroom) %>"><%= @classroom['name'] %></a>
+      </div>
+      <div id="nav-item">
+        <a href="/" data-toggle="modal" data-target="#entercode"><i class="fas fa-bullhorn fa-fw"></i>班級公告</a>
+        <a href="/classrooms/new"><i class="fas fa-vote-yea fa-fw"></i>投票</a>
+        <a href="/classrooms/new"><i class="fas fa-book-reader fa-fw"></i>週記</a>
+        <a href="/classrooms/new"><i class="fas fa-users fa-fw"></i>班級幹部</a>
+        <a href="/classrooms/new"><i class="fas fa-utensils fa-fw"></i>抬餐分配</a>
+        <a href="/classrooms/new"><i class="fas fa-tasks fa-fw"></i>考試排程</a>
+        <a href="/"><img id="uimg" src="<%= uimg(current_user.uimg) %>"><%= current_user.uname[-3..-1] %></a>
+      </div>
+    </nav>
+
+    <%= render "layouts/alert" %>
+    <%= render "layouts/notice" %>
+    <% if alert or notice%>
+      <script>
+        $('.toast').toast({
+          delay: 3000,
+          animation: true,
+        })
+        $('.toast').toast('show')
+      </script>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
