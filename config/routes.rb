@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     collection do
       post :addcode
     end
-    resources :votes
     resources :posts
+    resources :votes
     resources :weeknotes
+    resources :managers
+    resources :lunchs
     resources :testlists
   end
 end
