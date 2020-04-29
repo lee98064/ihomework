@@ -3,6 +3,7 @@ class Classroom < ApplicationRecord
 	resourcify
 	before_create :createaddcode
 	belongs_to :user
+	has_many :posts
 	has_many :testlists
 
 	def createaddcode
