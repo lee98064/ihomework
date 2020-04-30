@@ -1,0 +1,6 @@
+<%= simple_form_for([@classroom, @post]) do |f|%>
+  <%= f.input :title, label: '標題:'%>
+  <%= f.input :content, label: '內文:' ,input_html: { rows: '5' }%>
+  
+  <%= f.button :submit, '送出', class: 'btn btn-primary'%>
+<% end %>

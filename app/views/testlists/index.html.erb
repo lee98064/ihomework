@@ -1,3 +1,4 @@
+<% provide :web_title, "考試日程" %>
 <link href='/css/fullcalendar/core/main.min.css' rel='stylesheet' />
 <link href='/css/fullcalendar/daygrid/main.min.css' rel='stylesheet' />
 <link href='/css/fullcalendar/timegrid/main.min.css' rel='stylesheet' />
@@ -20,7 +21,6 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var initialLocaleCode = 'zh-tw';
-    var localeSelectorEl = document.getElementById('locale-selector');
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {

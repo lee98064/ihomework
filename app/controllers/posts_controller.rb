@@ -1,22 +1,25 @@
 class  PostsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_classroom_id
-	before_action :set_post_id, only: [:show,:edit]
+	before_action :set_classroom
+	before_action :set_post, only: [:show,:edit]
 	layout "inclassroom"
 
 	def index
 		@posts = Post.where(classroom_id: @classroom.id).includes(:user)
 	end
 
+	def show
+	end
+
 	def new
-		@post = @classroom.posts.build
+		@post = Post.new
 	end
 
 	def create
 		@post = @classroom.posts.build(post_params)
-		@post.user_id = current_user.id
+		@post.user_id = current_user.id if current_user
 		if @post.save
-			redirect_to classroom_post_path(@post)
+			redirect_to classroom_post_path(@classroom,@post), notice: "公告建立成功!"
 		else
 			render 'new'
 		end
@@ -28,17 +31,16 @@ class  PostsController < ApplicationController
 	def update
 	end
 
-
 	private
 
-	def set_classroom_id
+	def set_classroom
 		@classroom = Classroom.find(params[:classroom_id])
 		if not current_user.has_any_role?({ :name => :student, :resource => @classroom }, { :name => :admin, :resource => @classroom }, { :name => :teacher, :resource => @classroom })
 			redirect_to classrooms_path
 		end
 	end
 
-	def set_post_id
+	def set_post
 		@post = Post.find(params[:id])
 	end
 
