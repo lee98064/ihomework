@@ -1,7 +1,7 @@
 class  PostsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_post, only: [:show,:edit]
+	before_action :set_post, only: [:show,:edit,:update]
 	layout "inclassroom"
 
 	def index
@@ -26,9 +26,17 @@ class  PostsController < ApplicationController
 	end
 
 	def edit
+		unless @post.user_id == current_user.id
+		 	redirect_to classroom_post_path(@classroom,@post), notice: "您沒有權限進行編輯!"
+		end 
 	end
 
 	def update
+		if @post.update(post_params)
+			redirect_to classroom_post_path(@classroom,@post), notice: "文章編輯成功!"
+	    else
+	    	render 'edit'
+	    end 
 	end
 
 	private
