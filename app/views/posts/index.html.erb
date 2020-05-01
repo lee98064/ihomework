@@ -1,11 +1,15 @@
 <% provide :web_title, "所有公告" %>
 
 <div class="container" style="padding: 20px;">
-
 	<% @posts.each do |post| %>
-		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" onclick="location.href='<%= classroom_post_path(@classroom,post) %>'">
-		    <h3 class="uk-card-title"><%= post['title']%></h3>
-		    <span><%= post.user.try(:uname)[-3..-1]%></span>
+		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;" onclick="location.href='<%= classroom_post_path(@classroom,post) %>'">
+			<div style="display: flex;">
+				<img src="<%= post.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
+				<span>
+					<%= post.user.try(:uname)[-3..-1] %><br>
+					<%= post.created_at.to_s.split("+").first %>
+				</span>
+			</div>
 		    <p><%= simple_format(post['content']) %></p>
 		</div>
 	<% end %>
