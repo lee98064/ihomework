@@ -3,8 +3,8 @@ class Classroom < ApplicationRecord
 	resourcify
 	before_create :createaddcode
 	belongs_to :user
-	has_many :posts
-	has_many :testlists
+	has_many :posts, dependent: :destroy
+	has_many :testlists, dependent: :destroy
 
 	def createaddcode
 		code = SecureRandom.hex(3)

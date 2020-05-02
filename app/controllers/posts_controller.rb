@@ -1,7 +1,8 @@
 class  PostsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_post, only: [:show,:edit,:update]
+	before_action :set_post, only: [:show,:edit,:update,:destroy]
+	before_action :verify_user, only: [:edit,:update,:destroy]
 	layout "inclassroom"
 
 	def index
@@ -26,9 +27,6 @@ class  PostsController < ApplicationController
 	end
 
 	def edit
-		unless @post.user_id == current_user.id
-		 	redirect_to classroom_post_path(@classroom,@post), notice: "您沒有權限進行編輯!"
-		end 
 	end
 
 	def update
@@ -37,6 +35,11 @@ class  PostsController < ApplicationController
 	    else
 	    	render 'edit'
 	    end 
+	end
+
+	def destroy
+		@post.destroy
+		redirect_to classroom_posts_path, notice: "公告刪除成功!"
 	end
 
 	private
@@ -54,5 +57,11 @@ class  PostsController < ApplicationController
 
 	def post_params
       params.require(:post).permit(:title,:content)
+    end
+
+    def verify_user
+    	unless @post.user_id == current_user.id
+		 	redirect_to classroom_post_path(@classroom,@post), notice: "您沒有權限進行操作!"
+		end 
     end
 end

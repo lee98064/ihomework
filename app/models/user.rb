@@ -7,9 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,:trackable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   
-  has_many :classrooms
-  has_many :posts
-  has_many :testlists
+  has_many :classrooms, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :testlists, dependent: :destroy
   
   def name
 		self.uname

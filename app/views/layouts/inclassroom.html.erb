@@ -28,9 +28,12 @@
           <a href="/"><img id="uimg" src="<%= uimg(current_user.uimg) %>"><%= current_user.uname[-3..-1] %></a>
         </div>
     </nav>
-
-    <%= render "layouts/alert" %>
-    <%= render "layouts/notice" %>
+    <% if alert %>
+      <%= render "layouts/alert" %>
+    <% end %>
+    <% if notice %>
+      <%= render "layouts/notice" %>
+    <% end %>
     <% if alert or notice%>
       <script>
         $('.toast').toast({

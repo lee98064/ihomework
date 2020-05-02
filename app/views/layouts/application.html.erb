@@ -30,8 +30,12 @@
         <!-- <button id="nav-registration" onclick="">註冊</button> -->
       </div>
     </nav>
-    <%= render "layouts/alert" %>
-    <%= render "layouts/notice" %>
+    <% if alert %>
+      <%= render "layouts/alert" %>
+    <% end %>
+    <% if notice %>
+      <%= render "layouts/notice" %>
+    <% end %>
     <% if alert or notice%>
       <script>
         $('.toast').toast({
