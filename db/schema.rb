@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_001620) do
+ActiveRecord::Schema.define(version: 2020_05_03_061337) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -44,8 +44,9 @@ ActiveRecord::Schema.define(version: 2020_04_29_001620) do
   create_table "testlists", force: :cascade do |t|
     t.string "title"
     t.text "describe"
-    t.datetime "starttime"
-    t.datetime "endtime"
+    t.datetime "start"
+    t.datetime "end"
+    t.string "color"
     t.integer "user_id"
     t.integer "classroom_id"
     t.datetime "created_at", null: false
@@ -69,7 +70,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_001620) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "access_id", default: 2
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,0 +1,9 @@
+calendar.addEvent({
+  id: "<%= @testlist['id'] %>",
+  title: "<%= @testlist['title'] %>",
+  start: moment("<%= @testlist['start'] %>").format("YYYY-MM-DDTHH:mm"),
+  end: moment("<%= @testlist['end'] %>").format("YYYY-MM-DDTHH:mm"),
+  color: "<%= @testlist['color'] %>"
+});
+
+$("#modal").modal('hide');
