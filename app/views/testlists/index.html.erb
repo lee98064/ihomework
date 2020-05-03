@@ -43,8 +43,17 @@
         right: 'title',
       },
       footer: {
-      	left: 'today',
+      	left: 'today,addevent',
       	right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      customButtons:{
+        addevent:{
+          text: '＋',
+          click: function(){
+            $.getScript('<%= new_classroom_testlist_path(@classroom) %>', function(){
+            });
+          }
+        }
       },
       defaultDate: '2020-02-12',
       locale: initialLocaleCode,
@@ -82,7 +91,7 @@
       },
       eventClick: function(info){
         $.getScript("testlists/" + info.event.id, function(){
-          
+
         });
       }
     });

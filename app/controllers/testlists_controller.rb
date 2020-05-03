@@ -13,13 +13,17 @@ class  TestlistsController < ApplicationController
 	def create
 		@testlist = @classroom.testlists.build(testlist_params)
 		@testlist.user_id = current_user.id if current_user
-		@testlist.save
+		if not @testlist.save
+			render 'new'
+		end
 	end
 
 	def update
 		if @testlist.user_id == current_user.id
 			@testlist.update(testlist_params)
-			@testlist.save
+			if not @testlist.save
+				render 'edit'
+			end
 		end
 	end
 

@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-	描述：<%= @testlist['describe'] %><br>
+	描述：<%= simple_format(@testlist['describe']) %><br>
     開始日期： <%= @testlist['start'].strftime('%Y-%m-%d %T') %><br>
     結束日期： <%= @testlist['end'].strftime('%Y-%m-%d %T') %><br>
 </div>
