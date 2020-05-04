@@ -3,7 +3,7 @@ class  ClassroomsController < ApplicationController
 	before_action :set_classroom , only: [:show,:update] 
 	layout "classroom"
 	def index
-		@classrooms = Classroom.with_role([:admin, :students,:teacher], current_user).includes(:user)
+		@classrooms = Classroom.with_role([:admin, :student,:teacher], current_user).includes(:user)
 	end
 
 	def show
