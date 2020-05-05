@@ -26,9 +26,14 @@ body{
 
 nav{
 	display: flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 	justify-content: space-between;
 	padding: 15px 15px 15px 15px;
 	background-color: #FFF;
+	z-index: 10;
 }
 
 nav #nav-logo a{

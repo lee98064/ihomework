@@ -1,6 +1,8 @@
 require 'securerandom'
 class Classroom < ApplicationRecord
 	resourcify
+	validates :name, presence: true
+	validates :describe, presence: true
 	before_create :createaddcode
 	belongs_to :user
 	has_many :posts, dependent: :destroy

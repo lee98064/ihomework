@@ -1,7 +1,8 @@
 <% provide :web_title, "所有公告" %>
 <link href="/js/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" rel="stylesheet">
 <script src="/js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
-<div class="container" style="padding: 20px;">
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_classroom_post_path(@classroom), id: "newpostbtn"%>
 	<% @posts.each do |post| %>
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
 			<div style="display: flex;">
@@ -44,4 +45,21 @@
 		width: 100%;
 		height: 100%;
 	}
+	#newpostbtn{
+		position: fixed;
+	    left: -5px;
+	    background-color: #007bff;
+	    color: #FFF;
+	    height: 35px;
+	    width: 40px;
+	    border-radius: 0 10px 10px 0;
+	    z-index: 3;
+	    text-align: center;
+	    font-size: 22px;
+	    transition: 0.3s;
+	}
+	#newpostbtn:hover{
+		left: 0;
+	}
+
 </style>

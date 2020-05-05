@@ -1,6 +1,6 @@
 class  ClassroomsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_classroom , only: [:show,:update] 
+	before_action :set_classroom , only: [:show,:update,:edit] 
 	layout "classroom"
 	def index
 		@classrooms = Classroom.with_role([:admin, :student,:teacher], current_user).includes(:user)
@@ -22,6 +22,18 @@ class  ClassroomsController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def edit
+	end
+
+	def update
+		if @classroom.update(classroom_params)
+			redirect_to classroom_path(@classroom),notice: "修改成功！"
+		else
+			render 'edit'
+		end
+
 	end
 
 	def destroy
