@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
     resources :posts
     resources :votes
-    resources :weeknotes
+    resources :weeknotes,only: [:index,:show] do
+      post "/create", to: "weeknotes#insert", on: :member
+    end
     resources :managers
     resources :lunchs
     resources :testlists

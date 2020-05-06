@@ -1,29 +1,25 @@
 class  WeeknotesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_weeknote, except: [:index,:new,:create]
+	before_action :set_weeknote, except: [:index,:new]
 	layout "inclassroom"
 	def index
 		@weeknotesubjects = Weeknotesubject.where(classroom_id: @classroom.id).includes(:user)
+		@weeknotesubjects = Weeknotesubject.includes(:weeknotes).includes(:user)
 	end
 
 	def show
-
+		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id,user_id: current_user.id)
 	end
 
-	def new
-		@weeknote = Weeknote.new
-	end
-
-	def create
-
-	end
-
-	def edit
-
-	end
-
-	def update
+	def insert
+		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id,user_id: current_user.id)
+		@weeknote.content = params[:weeknote][:content]
+		if @weeknote.save
+			redirect_to classroom_weeknote_path(@classroom,@weeknote), notice: "儲存成功!"
+		else
+			render 'show', notice: "儲存失敗!"
+		end
 	end
 
 	private
@@ -37,5 +33,9 @@ class  WeeknotesController < ApplicationController
 
 	def set_weeknote
 		@weeknotesubject = Weeknotesubject.find(params[:id])
+	end
+
+	def weeknote_params
+		params.require(:weeknote).permit(:content)
 	end
 end

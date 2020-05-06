@@ -1,20 +1,20 @@
 <% provide :web_title, "週記系統"%>
 
 <div class="container" style="padding: 20px;margin-top: 60px;">
-	<%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_classroom_weeknote_path(@classroom), id: "newweeknotebtn"%>
-	<% @weeknotesubjects.each do |weeknote| %>
+	<% @weeknotesubjects.each do |weeknotesubject| %>
 		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
 			<div style="display: flex;">
-				<img src="<%= weeknote.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
+				<img src="<%= weeknotesubject.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
 				<span style="line-height: 19px;">
-					<%= weeknote.user.try(:uname)[-3..-1] %><br>
-					<%= weeknote.created_at.to_s.split("+").first %>
+					<%= weeknotesubject.user.try(:uname)[-3..-1] %><br>
+					<%= weeknotesubject.created_at.to_s.split("+").first %>
 				</span>
 			</div>
 			<div id="describe">
-				<%= simple_format(weeknote['describe']) %>
+				<%= simple_format(weeknotesubject['describe']) %>
 			</div>
-			<%= link_to '寫週記', classroom_weeknote_path(@classroom,weeknote), class: "btn btn-secondary btn-sm"%>
+			<%= link_to '寫週記', classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm"%>
+			<%= is_finish_weeknote?(weeknotesubject) %>
 		</div>
 	<% end %>
 </div>
@@ -43,21 +43,4 @@
 		width: 100%;
 		height: 100%;
 	}
-	#newweeknotebtn{
-		position: fixed;
-	    left: -5px;
-	    background-color: #007bff;
-	    color: #FFF;
-	    height: 35px;
-	    width: 40px;
-	    border-radius: 0 10px 10px 0;
-	    z-index: 3;
-	    text-align: center;
-	    font-size: 22px;
-	    transition: 0.3s;
-	}
-	#newweeknotebtn:hover{
-		left: 0;
-	}
-
 </style>
