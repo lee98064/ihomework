@@ -21,7 +21,7 @@
           <a href="/classrooms"><i class="fas fa-home fa-fw"></i>所有教室</a>
           <a href="<%= classroom_posts_path(@classroom) %>"><i class="fas fa-bullhorn fa-fw"></i>班級公告</a>
           <a href="/classrooms/new"><i class="fas fa-vote-yea fa-fw"></i>班級投票</a>
-          <a href="/classrooms/new"><i class="fas fa-book-reader fa-fw"></i>週記系統</a>
+          <a href="<%= classroom_weeknotes_path(@classroom) %>"><i class="fas fa-book-reader fa-fw"></i>週記系統</a>
           <a href="/classrooms/new"><i class="fas fa-users fa-fw"></i>班級幹部</a>
           <a href="/classrooms/new"><i class="fas fa-utensils fa-fw"></i>抬餐分配</a>
           <a href="<%= classroom_testlists_path(@classroom) %>"><i class="fas fa-tasks fa-fw"></i>考試排程</a>

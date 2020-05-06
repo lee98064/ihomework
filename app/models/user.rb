@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :classrooms, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :testlists, dependent: :destroy
+  has_many :weeknotesubjects, dependent: :destroy
+  has_many :weeknotes, dependent: :destroy
   
   def name
 		self.uname

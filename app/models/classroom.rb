@@ -7,7 +7,7 @@ class Classroom < ApplicationRecord
 	belongs_to :user
 	has_many :posts, dependent: :destroy
 	has_many :testlists, dependent: :destroy
-
+	has_many :weeknotesubjects, dependent: :destroy
 	def createaddcode
 		code = SecureRandom.hex(3)
 		classroom = Classroom.where(addcode: code)

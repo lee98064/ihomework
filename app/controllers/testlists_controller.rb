@@ -1,4 +1,5 @@
-class  TestlistsController < ApplicationController
+class TestlistsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_classroom
 	before_action :set_testlist, except: [:index,:new,:create]
 	layout "inclassroom"

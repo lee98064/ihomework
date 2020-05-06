@@ -1,0 +1,18 @@
+<% provide :web_title, @weeknotesubject['title'] %>
+
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+		<h3 id="title"><%= @weeknotesubject['title'] %></h3>
+		<div id="describe">
+			<%= simple_format(@weeknotesubject['describe']) %>
+		</div>
+	</div>
+
+	<%= simple_form_for([@weeknotesubject, @weeknote]) do |f|%>
+	  <%= f.input :content, label: '內文:' ,input_html: { rows: '10' }%>
+	  
+	  <%= f.button :submit, '送出', class: 'btn btn-primary'%>
+	<% end %>
+	<%= link_to '取消', classroom_weeknote_path(@weeknotesubject) %>
+</div>
