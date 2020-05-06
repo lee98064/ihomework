@@ -4,7 +4,6 @@ class  WeeknotesController < ApplicationController
 	before_action :set_weeknote, except: [:index,:new]
 	layout "inclassroom"
 	def index
-		@weeknotesubjects = Weeknotesubject.where(classroom_id: @classroom.id).includes(:user)
 		@weeknotesubjects = Weeknotesubject.includes(:weeknotes).includes(:user)
 	end
 
