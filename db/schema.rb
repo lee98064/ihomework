@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_005457) do
+ActiveRecord::Schema.define(version: 2020_05_07_102812) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -83,11 +83,14 @@ ActiveRecord::Schema.define(version: 2020_05_06_005457) do
   end
 
   create_table "weeknotes", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
     t.integer "weeknotesubject_id"
+    t.text "content"
+    t.string "score"
+    t.text "suggest"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["weeknotesubject_id"], name: "index_weeknotes_on_weeknotesubject_id"
   end
 
   create_table "weeknotesubjects", force: :cascade do |t|

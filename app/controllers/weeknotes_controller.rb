@@ -4,15 +4,36 @@ class  WeeknotesController < ApplicationController
 	before_action :set_weeknote, except: [:index,:new]
 	layout "inclassroom"
 	def index
-		@weeknotesubjects = Weeknotesubject.includes(:user).where(classroom_id: @classroom.id)
+		# @weeknote = Weeknote.where(user_id: current_user.id)
+		# p @weeknote
+		# @weeknotesubjects = Weeknotesubject.includes(:user).where(classroom_id: @classroom.id)
+		# @weeknotesubjects = @weeknotesubjects.includes(@weeknote).where("weeknotesubjects.id = weeknotes.weeknotesubject_id")
+		# @weeknotesubjects = Weeknotesubject.joins(@weeknote)
+		# p @weeknotesubjects[0].weeknotes
+		# @weeknotes = Weeknote.includes(:weeknotesubject).where(user_id: current_user.id)
+		# @weeknotesubjects = Weeknotesubject.left_outer_joins(:weeknotes).where(:weeknotes => {user_id: current_user.id})
+		# @weeknotesubjects = Weeknotesubject.includes(:user).joins("LEFT OUTER JOIN (SELECT * FROM weeknotes where user_id = #{current_user.id}) AS weeknotes on weeknotesubjects.id = weeknotes.weeknotesubject_id").preload(:weeknotes)
+		# @weeknotesubjects = ActiveRecord::Base.connection.execute(
+		# 	"SELECT 
+		# 	weeknotesubjects.*, weeknotes.id AS weeknoteid FROM weeknotesubjects,weeknotes
+		# 	LEFT OUTER JOIN 
+		# 	(SELECT weeknotes.weeknotesubject_id,weeknotes.user_id FROM weeknotes WHERE weeknotes.user_id = #{current_user.id}) As weeknote 
+		# 	ON weeknotesubjects.id = weeknote.weeknotesubject_id"
+		# 	)
+		
+		# @weeknotes = Weeknote.where(user_id: current_user.id),weeknotes.weeknotesubject_id,weeknotes.user_id,weeknotes 
+		# @weeknotesubjects = Weeknotesubject.user_weeknotelist(current_user.id)
+		# @weeknotes = Weeknote.user_weeknote(current_user.id)
+		@weeknotesubjects = Weeknotesubject.includes(:user,:weeknotes).where(classroom_id: @classroom.id)
+		# @weeknotesubjects
 	end
 
 	def show
-		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id,user_id: current_user.id)
+		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id, user_id: current_user.id)
 	end
 
 	def insert
-		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id,user_id: current_user.id)
+		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id, user_id: current_user.id)
 		@weeknote.content = params[:weeknote][:content]
 		if @weeknote.save
 			redirect_to classroom_weeknote_path(@classroom,@weeknote), notice: "儲存成功!"
