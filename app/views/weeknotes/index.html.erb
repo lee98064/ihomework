@@ -11,6 +11,7 @@
 				</span>
 			</div>
 			<div id="describe">
+				<h5><%= weeknotesubject['title'] %></h5>
 				<%= simple_format(weeknotesubject['describe']) %>
 			</div>
 			<%= link_to '寫週記', classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm"%>
