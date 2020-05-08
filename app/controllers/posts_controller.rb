@@ -20,6 +20,8 @@ class  PostsController < ApplicationController
 		@post = @classroom.posts.build(post_params)
 		@post.user_id = current_user.id if current_user
 		if @post.save
+			# ContactMailer.new_post(users).deliver_now
+			NewPostEmailJob.perform_later(@classroom,@post)
 			redirect_to classroom_post_path(@classroom,@post), notice: "公告建立成功!"
 		else
 			render 'new'
