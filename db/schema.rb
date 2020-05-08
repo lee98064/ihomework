@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_102812) do
+ActiveRecord::Schema.define(version: 2020_05_08_002437) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_102812) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "access_id", default: 2
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -83,14 +84,11 @@ ActiveRecord::Schema.define(version: 2020_05_07_102812) do
   end
 
   create_table "weeknotes", force: :cascade do |t|
-    t.integer "weeknotesubject_id"
     t.text "content"
-    t.string "score"
-    t.text "suggest"
     t.integer "user_id"
+    t.integer "weeknotesubject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["weeknotesubject_id"], name: "index_weeknotes_on_weeknotesubject_id"
   end
 
   create_table "weeknotesubjects", force: :cascade do |t|

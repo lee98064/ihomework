@@ -1,7 +1,7 @@
 class  WeeknotesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_weeknote, except: [:index,:new]
+	before_action :set_weeknotesubject, except: [:index,:new]
 	layout "inclassroom"
 	def index
 		# @weeknote = Weeknote.where(user_id: current_user.id)
@@ -11,7 +11,7 @@ class  WeeknotesController < ApplicationController
 		# @weeknotesubjects = Weeknotesubject.joins(@weeknote)
 		# p @weeknotesubjects[0].weeknotes
 		# @weeknotes = Weeknote.includes(:weeknotesubject).where(user_id: current_user.id)
-		# @weeknotesubjects = Weeknotesubject.left_outer_joins(:weeknotes).where(:weeknotes => {user_id: current_user.id})
+		# @weeknotesubjects = Weeknotesubject.left_outer_joins(:weeknotes).where(:weeknotes => {user_id: current_user.id}).select("users.*, profiles.field1, profiles.field2")
 		# @weeknotesubjects = Weeknotesubject.includes(:user).joins("LEFT OUTER JOIN (SELECT * FROM weeknotes where user_id = #{current_user.id}) AS weeknotes on weeknotesubjects.id = weeknotes.weeknotesubject_id").preload(:weeknotes)
 		# @weeknotesubjects = ActiveRecord::Base.connection.execute(
 		# 	"SELECT 
@@ -25,7 +25,6 @@ class  WeeknotesController < ApplicationController
 		# @weeknotesubjects = Weeknotesubject.user_weeknotelist(current_user.id)
 		# @weeknotes = Weeknote.user_weeknote(current_user.id)
 		@weeknotesubjects = Weeknotesubject.includes(:user,:weeknotes).where(classroom_id: @classroom.id)
-		# @weeknotesubjects
 	end
 
 	def show
@@ -36,7 +35,7 @@ class  WeeknotesController < ApplicationController
 		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id, user_id: current_user.id)
 		@weeknote.content = params[:weeknote][:content]
 		if @weeknote.save
-			redirect_to classroom_weeknote_path(@classroom,@weeknote), notice: "儲存成功!"
+			redirect_to classroom_weeknote_path(@classroom,@weeknotesubject), notice: "儲存成功!"
 		else
 			render 'show', notice: "儲存失敗!"
 		end
@@ -51,7 +50,7 @@ class  WeeknotesController < ApplicationController
 		end
 	end
 
-	def set_weeknote
+	def set_weeknotesubject
 		@weeknotesubject = Weeknotesubject.find(params[:id])
 	end
 
