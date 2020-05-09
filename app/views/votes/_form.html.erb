@@ -1,0 +1,8 @@
+<%= nested_form_for([@classroom, @vote]) do |f|%>
+  <% f.fields_for :vote_items do |vote_item| %>
+    <%= vote_item.label :title, '描述:' %>
+    <%= vote_item.text_field :title %>
+  <% end %>
+  <%= f.link_to_add "Add a mail address", :vote_items %>
+  <%= f.submit "提交", disable_with: "提交中...", class: "btn btn-primary" %>
+<% end %>

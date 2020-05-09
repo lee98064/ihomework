@@ -6,6 +6,9 @@ class VotesController< ApplicationController
         @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items)
     end
 
+	def new
+		p @vote = Vote.new
+	end
 
     private
 
