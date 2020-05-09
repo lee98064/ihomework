@@ -82,3 +82,5 @@ gem 'mysql2'
 gem "rolify"
 
 gem 'jquery-ui-rails'
+
+gem 'nested_form'

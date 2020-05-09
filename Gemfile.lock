@@ -303,6 +303,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   mysql2
+  nested_form
   omniauth
   omniauth-google-oauth2
   pg

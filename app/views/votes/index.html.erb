@@ -1,0 +1,24 @@
+<% provide :web_title, "班級投票" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+
+    <% @votes.each do |vote| %>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+			<div style="display: flex;">
+				<img src="<%= vote.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
+				<span style="line-height: 19px;">
+					<%= vote.user.try(:uname)[-3..-1] %><br>
+					<%= vote.created_at.to_s.split("+").first %>
+				</span>
+			</div>
+			<div id="describe">
+                <% vote.vote_items.each do |vote_item| %>
+                    <%= vote_item.title %>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <%= vote_item.vote_logs.size %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"><%= vote_item.vote_logs.size %>票</div>
+                    </div>                  
+                <% end %>
+			</div>
+		</div>
+    <% end %>
+</div>
