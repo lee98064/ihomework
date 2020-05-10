@@ -18,9 +18,9 @@ class VotesController< ApplicationController
 		@vote = @classroom.votes.build(vote_params)
 		@vote.user_id = current_user.id
 		if @vote.save
-			redirect_to classroom_votes_path(@classroom)
+			redirect_to classroom_votes_path(@classroom), notice: "投票新增成功!"
 		else
-			render 'new'
+			render 'new', notice: "投票新增失敗!請檢查欄位是否都有填寫!"
 		end
 	end
 
@@ -31,7 +31,7 @@ class VotesController< ApplicationController
 		if @vote.update(vote_params)
 			redirect_to classroom_votes_path(@classroom), notice: "投票編輯成功!"
 	    else
-	    	render 'edit'
+	    	render 'edit', notice: "投票編輯失敗!請檢查欄位是否都有填寫!"
 	    end 
 	end
 	

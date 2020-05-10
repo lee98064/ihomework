@@ -1,35 +1,29 @@
 <%= nested_form_for([@classroom, @vote]) do |f|%>
   <div class="form-group">
       <%= f.label :title, '標題:'%>
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.text_field :title, class: "form-control"%>
   </div>
 
   <div class="form-group">
       <%= f.label :title, '描述:'%>
-      <%= f.text_area :describe, class: "form-control"%>
+      <%= f.text_area :describe, class: "form-control" , rows: "5" %>
   </div>
-
+  
   <%= f.fields_for :vote_items do |vote_item| %>
-    <div class="form-group">
-      <%= vote_item.label :title, '選項:'%>
-      <%= vote_item.text_field :title, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= vote_item.label :title, '簡述:'%>
-      <%= vote_item.text_field :describe, class: "form-control" %>
-    </div>
-    
-    
-    <%= vote_item.link_to_remove "Remove this task" %>
+      <div class="input-group" style="margin-bottom: 10px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><%= vote_item.link_to_remove '<i class="fas fa-trash"></i>'.html_safe, data: {confirm: "確定刪除?"},style: "color: red;" %></span>
+        </div>
+        <%= vote_item.text_field :title, class: "form-control", placeholder: "名稱" %>
+        <%= vote_item.text_field :describe, class: "form-control", placeholder: "簡述" %>
+      </div>
   <% end %>
-  <%= f.link_to_add "新增選項", :vote_items, class: "btn btn-danger" %>
+  <%= f.link_to_add '<i class="fas fa-plus"></i>'.html_safe, :vote_items,class: "btn btn-info" %>
   <%= f.submit "提交", disable_with: "提交中...", class: "btn btn-primary" %>
 <% end %>
 
 <script>
   $(document).on('nested:fieldAdded', function(event){
-    // this field was just inserted into your form
-    a = event
+    
   })
 </script>
