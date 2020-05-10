@@ -1,0 +1,10 @@
+<% provide :web_title, "編輯投票" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<h1>編輯投票</h1>
+
+	<%= render 'form' %>
+
+	<%= link_to '取消', classroom_vote_path(@classroom,@vote) %>
+</div>
+
