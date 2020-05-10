@@ -1,7 +1,7 @@
 <% provide :web_title, "班級投票" %>
 
 <div class="container" style="padding: 20px;margin-top: 60px;">
-
+	<%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_classroom_vote_path(@classroom), id: "newvotebtn"%>
     <% @votes.each do |vote| %>
         <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
 			<div style="display: flex;">
@@ -11,14 +11,39 @@
 					<%= vote.created_at.to_s.split("+").first %>
 				</span>
 			</div>
-			<div id="describe">
+			<div id="describe" style="margin-top:10px;">
                 <% vote.vote_items.each do |vote_item| %>
                     <%= vote_item.title %>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <%= vote_item.vote_logs.size %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"><%= vote_item.vote_logs.size %>票</div>
+                    <div class="progress" id="vote-bar">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <%= vote_item.vote_logs.size %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"></div>
+						<span><%= vote_item.vote_logs.size %>票</span>
                     </div>                  
                 <% end %>
 			</div>
 		</div>
     <% end %>
 </div>
+
+<style>
+	#vote-bar{
+		margin-top: 5px;
+		margin-bottom: 10px;
+		height: 20px;
+	}
+	#newvotebtn{
+		position: fixed;
+	    left: -5px;
+	    background-color: #007bff;
+	    color: #FFF;
+	    height: 35px;
+	    width: 40px;
+	    border-radius: 0 10px 10px 0;
+	    z-index: 3;
+	    text-align: center;
+	    font-size: 22px;
+	    transition: 0.3s;
+	}
+	#newvotebtn:hover{
+		left: 0;
+	}
+</style>

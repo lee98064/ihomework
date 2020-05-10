@@ -4,7 +4,7 @@ class VotesController< ApplicationController
 	before_action :set_vote, only: [:destroy,:show,:edit,:update]
     layout "inclassroom"
     def index
-        @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items)
+        @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items).order("created_at DESC")
 	end
 	
 	def show

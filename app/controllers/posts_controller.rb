@@ -6,7 +6,7 @@ class  PostsController < ApplicationController
 	layout "inclassroom"
 
 	def index
-		@posts = Post.where(classroom_id: @classroom.id).includes(:user)
+		@posts = Post.where(classroom_id: @classroom.id).includes(:user).order("created_at DESC")
 	end
 
 	def show

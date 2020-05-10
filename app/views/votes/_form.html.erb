@@ -18,12 +18,6 @@
         <%= vote_item.text_field :describe, class: "form-control", placeholder: "簡述" %>
       </div>
   <% end %>
-  <%= f.link_to_add '<i class="fas fa-plus"></i>'.html_safe, :vote_items,class: "btn btn-info" %>
+  <%= f.link_to_add '<i class="fas fa-plus fa-fw"></i>選項'.html_safe, :vote_items,class: "btn btn-info" %>
   <%= f.submit "提交", disable_with: "提交中...", class: "btn btn-primary" %>
 <% end %>
-
-<script>
-  $(document).on('nested:fieldAdded', function(event){
-    
-  })
-</script>

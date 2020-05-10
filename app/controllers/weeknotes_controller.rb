@@ -24,7 +24,7 @@ class  WeeknotesController < ApplicationController
 		# @weeknotes = Weeknote.where(user_id: current_user.id),weeknotes.weeknotesubject_id,weeknotes.user_id,weeknotes 
 		# @weeknotesubjects = Weeknotesubject.user_weeknotelist(current_user.id)
 		# @weeknotes = Weeknote.user_weeknote(current_user.id)
-		@weeknotesubjects = Weeknotesubject.includes(:user,:weeknotes).where(classroom_id: @classroom.id)
+		@weeknotesubjects = Weeknotesubject.includes(:user,:weeknotes).where(classroom_id: @classroom.id).order("created_at DESC")
 	end
 
 	def show
