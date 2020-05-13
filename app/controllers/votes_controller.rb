@@ -41,7 +41,7 @@ class VotesController< ApplicationController
 
 	def vote
 		@vote_log = VoteLog.find_or_initialize_by(vote_id: @vote.id,user_id: current_user.id)
-		@vote_log.ip_address = request.remote_ip if @vote_log.vote_item_id.nil?
+		@vote_log.ip_address = request.env['HTTP_X_FORWARDED_FOR'] if @vote_log.vote_item_id.nil?
 		@vote_log.vote_item_id = params[:vote_item_id] if @vote_log.vote_item_id.nil?
 		if @vote_log.save!
 			redirect_to classroom_votes_path(@classroom), notice: "投票成功!"
