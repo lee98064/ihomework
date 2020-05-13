@@ -5,11 +5,16 @@
   </button>
 </div>
 <div class="modal-body">
-  <h5>你要投給?</h5>
-  <h6>*請謹慎投票，送出後無法修改!</h6>
-    <% @vote.vote_items.each do |item| %>
-      <%= link_to item.title, vote_classroom_vote_path(@classroom,@vote, vote_item_id: item.id) , method: :post, class: "btn btn-block btn-#{item.color}", data: {confirm: "確定投給這個嗎?\n投出後無法修改!"} %>
-    <% end %>
+  <h5>您已投過票!</h5>
+  <p>
+    您投給了:<br>
+    <%= @vote_log.vote_item.try(:title) %>
+  </p>
+  <p>
+    IP:<br>
+    <%= @vote_log.ip_address %>
+  </p>
+
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>

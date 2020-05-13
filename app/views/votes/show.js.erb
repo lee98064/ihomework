@@ -1,0 +1,8 @@
+<% if @vote_log.nil? %>
+    $("#vote-modal-form").html('<%= j render "vote" %>')
+<% else %>
+    $("#vote-modal-form").html('<%= j render "isvote" %>')
+<% end %>
+$("#vote-modal").modal('show');
+
+

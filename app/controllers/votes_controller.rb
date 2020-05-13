@@ -1,7 +1,7 @@
 class VotesController< ApplicationController
     before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_vote, only: [:destroy,:show,:edit,:update,:vote,:addvote]
+	before_action :set_vote, only: [:destroy,:show,:edit,:update,:vote]
     layout "inclassroom"
     def index
         @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items).order("created_at DESC")
@@ -35,17 +35,18 @@ class VotesController< ApplicationController
 	    end 
 	end
 
-	def vote
-		@vote_log = VoteLog.find_or_initialize_by(vote_id: @vote,user_id: current_user.id)
+	def show
+		@vote_log = VoteLog.where(vote_id: @vote.id,user_id: current_user.id).includes(:vote_item).last
 	end
 
-	def addvote
+	def vote
 		@vote_log = VoteLog.find_or_initialize_by(vote_id: @vote.id,user_id: current_user.id)
-		@vote_log.vote_item_id = params[:vote_log][:vote_item_id]
-		if @vote_log.save
-			redirect_to classroom_votes_path(@classroom), notice: "成功!"
+		@vote_log.ip_address = request.remote_ip if @vote_log.vote_item_id.nil?
+		@vote_log.vote_item_id = params[:vote_item_id] if @vote_log.vote_item_id.nil?
+		if @vote_log.save!
+			redirect_to classroom_votes_path(@classroom), notice: "投票成功!"
 		else
-			render 'vote'
+			redirect_to classroom_votes_path(@classroom), notice: "投票失敗!"
 		end
 	end
 	

@@ -19,4 +19,21 @@ module ApplicationHelper
 			'<span style="float:right;color: #dc3545"><i class="fas fa-times"></i></span>'.html_safe
 		end
 	end
+
+	def votetotal(items)
+		count = 0
+		items.each do |item|
+			count += item.vote_logs.size
+		end
+		count
+	end
+
+	def vote_range(item,total)
+		if item.vote_logs.size == 0
+			item.vote_logs.size
+		else
+			(item.vote_logs.size.to_f / total.to_f) * 100
+		end
+		
+	end
 end

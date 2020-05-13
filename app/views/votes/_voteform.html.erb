@@ -1,9 +1,0 @@
-<%= simple_form_for(@vote_log, :url => vote_classroom_vote_path(@classroom,@vote), remote: true) do |f|%>
-  <div class="modal-body">
-      <%= f.input :vote_item_id, collection: @vote.vote_items, label:'你要投給?' %>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-    <%= f.button :submit, '送出', class: 'btn btn-primary'%>
-  </div>
-<% end %>
