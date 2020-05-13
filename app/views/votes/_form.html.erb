@@ -16,6 +16,7 @@
         </div>
         <%= vote_item.text_field :title, class: "form-control", placeholder: "名稱" %>
         <%= vote_item.text_field :describe, class: "form-control", placeholder: "簡述" %>
+        <%= vote_item.select(:color,[['綠', 'success'], ['藍', 'info'], ['黃', 'warning'], ['紅', 'danger'], ['灰', 'secondary']], {},{ :class => 'form-control' }) %>
       </div>
   <% end %>
   <%= f.link_to_add '<i class="fas fa-plus fa-fw"></i>選項'.html_safe, :vote_items,class: "btn btn-info" %>

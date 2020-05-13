@@ -12,7 +12,10 @@ Rails.application.routes.draw do
       post :addcode
     end
     resources :posts
-    resources :votes
+    resources :votes do
+      get "/vote", to: "votes#vote", on: :member
+      post "/vote", to: "votes#addvote", on: :member
+    end
     resources :weeknotes,only: [:index,:show] do
       post "/create", to: "weeknotes#insert", on: :member
     end

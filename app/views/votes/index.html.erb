@@ -15,14 +15,26 @@
                 <% vote.vote_items.each do |vote_item| %>
                     <%= vote_item.title %>
                     <div class="progress" id="vote-bar">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <%= vote_item.vote_logs.size %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-<%= vote_item.color %>" role="progressbar" style="width: <%= vote_item.vote_logs.size %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"></div>
 						<span><%= vote_item.vote_logs.size %>票</span>
                     </div>                  
                 <% end %>
 			</div>
+			<%= link_to '投票', vote_classroom_vote_path(@classroom,vote), class: "btn btn-secondary btn-sm", remote: true%>
 		</div>
     <% end %>
 </div>
+
+<div class="modal fade" id="vote-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="vote-modal-form">
+      
+    </div>
+  </div>
+</div>
+
+
+
 
 <style>
 	#vote-bar{

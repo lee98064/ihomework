@@ -1,7 +1,7 @@
 class VotesController< ApplicationController
     before_action :authenticate_user!
 	before_action :set_classroom
-	before_action :set_vote, only: [:destroy,:show,:edit,:update]
+	before_action :set_vote, only: [:destroy,:show,:edit,:update,:vote,:addvote]
     layout "inclassroom"
     def index
         @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items).order("created_at DESC")
@@ -11,7 +11,7 @@ class VotesController< ApplicationController
 	end
 
 	def new
-		p @vote = Vote.new
+		@vote = Vote.new
 	end
 
 	def create
@@ -34,6 +34,20 @@ class VotesController< ApplicationController
 	    	render 'edit', notice: "投票編輯失敗!請檢查欄位是否都有填寫!"
 	    end 
 	end
+
+	def vote
+		@vote_log = VoteLog.find_or_initialize_by(vote_id: @vote,user_id: current_user.id)
+	end
+
+	def addvote
+		@vote_log = VoteLog.find_or_initialize_by(vote_id: @vote.id,user_id: current_user.id)
+		@vote_log.vote_item_id = params[:vote_log][:vote_item_id]
+		if @vote_log.save
+			redirect_to classroom_votes_path(@classroom), notice: "成功!"
+		else
+			render 'vote'
+		end
+	end
 	
     private
 
@@ -49,6 +63,6 @@ class VotesController< ApplicationController
 	end
 
 	def vote_params
-		params.require(:vote).permit(:title,:describe,vote_items_attributes: [:id, :title, :describe, :_destroy])
+		params.require(:vote).permit(:title,:describe,vote_items_attributes: [:id, :title, :describe, :color,:_destroy])
 	end
 end
