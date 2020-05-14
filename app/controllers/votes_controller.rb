@@ -2,6 +2,7 @@ class VotesController< ApplicationController
     before_action :authenticate_user!
 	before_action :set_classroom
 	before_action :set_vote, only: [:destroy,:show,:edit,:update,:vote]
+	before_action :verify_user, only: [:edit,:update,:destroy]
     layout "inclassroom"
     def index
         @votes = Vote.where(classroom_id: @classroom.id).includes(:user,:vote_items).order("created_at DESC")
@@ -49,6 +50,11 @@ class VotesController< ApplicationController
 			redirect_to classroom_votes_path(@classroom), notice: "投票失敗!"
 		end
 	end
+
+	def destroy
+		@vote.destroy
+		redirect_to classroom_votes_path(@classroom)
+	end
 	
     private
 
@@ -66,4 +72,10 @@ class VotesController< ApplicationController
 	def vote_params
 		params.require(:vote).permit(:title,:describe,vote_items_attributes: [:id, :title, :describe, :color,:_destroy])
 	end
+
+	def verify_user
+    	unless @vote.user_id == current_user.id
+		 	redirect_to classroom_votes_path(@classroom), notice: "您沒有權限進行操作!"
+		end 
+    end
 end

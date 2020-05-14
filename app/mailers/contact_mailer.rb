@@ -1,6 +1,12 @@
 class ContactMailer < ApplicationMailer
-	def new_post(user)
+	def new_post(user,post,classroom)
 		@user = user
-		mail to: user.email, subject: "您的教室有新貼文!"
+		@post = post
+		@classroom = classroom
+		make_bootstrap_mail(
+			to: user.email,
+			from: "線上聯絡簿 <ihomework@ihomework.ga>",
+			subject: "#{post.user.try(:uname)} 在 #{classroom.name}中發布了新公告!"
+		)
 	end
 end

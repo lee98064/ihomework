@@ -11,10 +11,14 @@
 					<%= vote.created_at.to_s.split("+").first %>
 				</span>
 			</div>
-			<div id="describe" style="margin-top:10px;">
+			<div id="describe" style="margin-top:10px;padding-top: 10px;">
+				<h5>說明:</h5>
+				<%= simple_format(vote.describe) %>
+				<hr>
+				<h5>目前票數:</h5>
 				<% vote_total = votetotal(vote.vote_items) %>
                 <% vote.vote_items.each do |vote_item| %>
-                    <%= vote_item.title %>
+                    <h6><%= vote_item.title %></h6>
                     <div class="progress" id="vote-bar">
                         <div class="progress-bar bg-<%= vote_item.color %>" role="progressbar" style="width: <%= vote_range(vote_item,vote_total) %>%" aria-valuenow="<%= vote_item.vote_logs.size %>" aria-valuemin="0" aria-valuemax="100"></div>
 						<span><%= vote_item.vote_logs.size %>票</span>
@@ -22,7 +26,13 @@
                 <% end %>
 			</div>
 			<%= link_to '投票', classroom_vote_path(@classroom,vote), class: "btn btn-secondary btn-sm", remote: true%>
-			<span style="float:right">已投人數:<%= vote_total %></span>
+			<span style="float:right">
+				已投人數:<%= vote_total %>
+				<% if vote.user_id == current_user.id %>
+					<%= link_to '<i class="fas fa-pen fa-fw" style="color: #666;"></i>'.html_safe, edit_classroom_vote_path(@classroom,vote)%>
+					<%= link_to '<i class="fas fa-trash fa-fw" style="color: #666;"></i>'.html_safe, classroom_vote_path(@classroom,vote), method: :delete ,data:{confirm: "確定刪除這個投票?" }%>
+				<% end %>		
+			</span>
 		</div>
     <% end %>
 </div>

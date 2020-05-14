@@ -1,5 +1,20 @@
-<%= @user.uname %>
-
-<h2>你好!!恭喜註冊成功</h2>
-
-<a href="" class="btn btn-success">123</a>
+<div class="container">
+    <div class="card " class="padding: 10px;min-hight: 500px;">
+        <div class="card-body">
+            <h4><%= @user.uname %>您好：</h4>
+            <p style="margin-bottom: 20px;">
+                <%= @post.user.try(:uname) %> 在 「<a href="https://ihomework.ga/classrooms/<%= @classroom.id %>"><%= @classroom.name %></a>」新增了一則公告!
+            </p>
+            <div class="container" >
+                <div class="card text-white bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: 500;color: #000;"><%= @post.title %></h5>
+                        <p class="card-text">
+                            <a href="https://ihomework.ga/classrooms/<%= @classroom.id %>/posts/<%= @post.id %>">前往查看</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

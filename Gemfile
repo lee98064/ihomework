@@ -84,3 +84,5 @@ gem "rolify"
 gem 'jquery-ui-rails'
 
 gem 'nested_form'
+
+gem 'bootstrap-email'
