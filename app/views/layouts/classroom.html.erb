@@ -20,7 +20,7 @@
       <div id="nav-item">
         <a href="/" data-toggle="modal" data-target="#entercode"><i class="fas fa-plus fa-fw"></i>新增代碼</a>
         <a href="/classrooms/new"><i class="fas fa-plus fa-fw"></i>建立教室</a>
-        <a href="/users/sign_out" data-confirm="確定要登出嗎?"><img id="uimg" src="<%= uimg(current_user.uimg) %>"><%= current_user.uname[-3..-1] %></a>
+        <a href="/users/sign_out" data-confirm="確定要登出嗎?"><img id="uimg" src="<%= uimg(current_user.uimg) %>"><%= current_user.uname[-3..-1] %></a>ㄗ
       </div>
     </nav>
 
@@ -78,7 +78,7 @@
             if (response['success'] == true){
               window.location.href = response['classroom']
             }else{
-
+              alert("無此班級代碼!");
             }
           }
       });
