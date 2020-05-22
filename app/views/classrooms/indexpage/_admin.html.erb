@@ -1,0 +1,9 @@
+<% @classrooms.each do |classroom| %>
+    <div class="col-md-3">
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" onclick="location.href='<%= admin_classroom_path(classroom) %>'">
+            <h3 class="uk-card-title"><%= classroom['name']%></h3>
+            <p><%= classroom['describe'][0..20] + "..." %></p>
+            <span><%= classroom.user.try(:uname)%></span>
+        </div>
+    </div>
+<% end %>

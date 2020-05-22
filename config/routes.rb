@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 	root 'homepage#index'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/backend', as: 'rails_admin'
   devise_for :users, controllers: {
   	registrations: 'users/registrations',
   	omniauth_callbacks: "users/omniauth_callbacks"
@@ -22,4 +22,11 @@ Rails.application.routes.draw do
     resources :lunchs
     resources :testlists
   end
+
+  namespace :admin do #管理
+    resources :classrooms,except: [:index,:new,:create] do
+      resources :posts
+    end
+  end
+  
 end

@@ -1,0 +1,6 @@
+<% if params[:admin] %>
+    $("#myclassroom").html('<%= j render "classrooms/indexpage/admin" %>')
+<% else %>
+    $("#myclassroom").html('<%= j render "classrooms/indexpage/student" %>')
+<% end %>
+
