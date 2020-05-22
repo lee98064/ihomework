@@ -1,6 +1,15 @@
 <% provide :web_title ,"我的教室" %>
 <div style="padding: 20px;margin-top: 60px;">
-<%= link_to "Text", '/classrooms?admin=true' ,remote: true%>
+	<div style="margin-bottom: 10px;">
+		<div class="custom-control custom-radio custom-control-inline">
+			<input type="radio" id="radiostudent" value="student" name="usertype" class="custom-control-input" checked>
+			<label class="custom-control-label" for="radiostudent">我是學生</label>
+		</div>
+		<div class="custom-control custom-radio custom-control-inline">
+			<input type="radio" id="radioadmin" value="admin" name="usertype" class="custom-control-input">
+			<label class="custom-control-label" for="radioadmin">我是老師</label>
+		</div>
+	</div>
 	<div class="row" id="myclassroom">
 		<script>
 			window.onload = function() {
@@ -9,3 +18,14 @@
 		</script>
 	</div>
 </div>
+
+<script>
+	$('input[type=radio][name=usertype]').change(function() {
+        if (this.value == 'admin') {
+            $.getScript('/classrooms?admin=true', function(){});
+        }
+        else if (this.value == 'student') {
+            $.getScript('/classrooms', function(){});
+        }
+    });
+</script>
