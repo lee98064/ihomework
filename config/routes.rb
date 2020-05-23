@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :weeknotes,only: [:index,:show] do
       post "/create", to: "weeknotes#insert", on: :member
     end
-    resources :managers
+    resources :members
     resources :lunchs
     resources :testlists
   end
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :admin do #管理
     resources :classrooms,except: [:index,:new,:create] do
       resources :posts
+      resources :members
     end
   end
   

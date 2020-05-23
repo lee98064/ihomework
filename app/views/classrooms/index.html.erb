@@ -1,31 +1,43 @@
 <% provide :web_title ,"我的教室" %>
 <div style="padding: 20px;margin-top: 60px;">
 	<div style="margin-bottom: 10px;">
+		角色切換:<br>
 		<div class="custom-control custom-radio custom-control-inline">
 			<input type="radio" id="radiostudent" value="student" name="usertype" class="custom-control-input" checked>
 			<label class="custom-control-label" for="radiostudent">我是學生</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
 			<input type="radio" id="radioadmin" value="admin" name="usertype" class="custom-control-input">
-			<label class="custom-control-label" for="radioadmin">我是老師</label>
+			<label class="custom-control-label" for="radioadmin">我是老師/管理者</label>
 		</div>
 	</div>
 	<div class="row" id="myclassroom">
-		<script>
-			window.onload = function() {
-				$.getScript('/classrooms', function(){});
-			};
-		</script>
 	</div>
 </div>
 
 <script>
-	$('input[type=radio][name=usertype]').change(function() {
-        if (this.value == 'admin') {
+	window.onload = function() {
+		var value = $('input[type=radio][name=usertype]').val()
+		getlist(value)
+	};
+	$('input[type=radio][name=usertype]').click(function() {
+        getlist(this.value)
+    });
+	function getlist(value) {
+		if (value == 'admin') {
             $.getScript('/classrooms?admin=true', function(){});
         }
-        else if (this.value == 'student') {
+        else if (value == 'student') {
             $.getScript('/classrooms', function(){});
         }
-    });
+	}
 </script>
+
+<style>
+	#classuimg{
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+	}
+</style>

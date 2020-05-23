@@ -2,12 +2,13 @@
 
 <div class="container" style="padding: 20px;margin-top: 60px;">
 	<h3 id="classroomname"><%= @classroom['name'] %></h3>	
+	<h5 id="addcode">教室代碼：<%= @classroom['addcode'] %></h5>
 
 	<div class=" allfunction">
-		<a class="btn" href="<%= classroom_posts_path(@classroom) %>" style="background-color: #F39C12"><i class="fas fa-bullhorn fa-fw"></i>班級公告</a>
-  		<a class="btn" href="<%= classroom_votes_path(@classroom) %>" style="background-color: #13C3FB"><i class="fas fa-vote-yea fa-fw"></i>班級投票</a>
-  		<a class="btn" href="<%= classroom_weeknotes_path(@classroom) %>" style="background-color: #E74C3C"><i class="fas fa-book-reader fa-fw"></i>週記系統</a>
-		<a class="btn" href="<%= classroom_members_path(@classroom) %>" style="background-color: #F1C40F"><i class="fas fa-users fa-fw"></i>班級幹部</a>
+		<a class="btn" href="<%= classroom_posts_path(@classroom) %>" style="background-color: #F39C12"><i class="fas fa-bullhorn fa-fw"></i>管理公告</a>
+  		<a class="btn" href="<%= classroom_votes_path(@classroom) %>" style="background-color: #13C3FB"><i class="fas fa-vote-yea fa-fw"></i>管理投票</a>
+  		<a class="btn" href="<%= classroom_weeknotes_path(@classroom) %>" style="background-color: #E74C3C"><i class="fas fa-book-reader fa-fw"></i>週記處理</a>
+		<a class="btn" href="<%= admin_classroom_members_path(@classroom) %>" style="background-color: #F1C40F"><i class="fas fa-users fa-fw"></i>管理成員</a>
   		<a class="btn" href="<%= classroom_lunchs_path(@classroom) %>" style="background-color: #6B76E3"><i class="fas fa-utensils fa-fw"></i>抬餐分配</a>
   		<a class="btn" href="<%= classroom_testlists_path(@classroom) %>" style="background-color: #707070"><i class="fas fa-tasks fa-fw"></i>考試排程</a>	
 	</div>
@@ -15,7 +16,9 @@
 
 
 <style>
-	
+	#addcode{
+		text-align: center;
+	}
 	#classroominfo{
 		text-align: center;
 	}

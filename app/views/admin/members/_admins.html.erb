@@ -1,0 +1,16 @@
+<h2>管理員</h2>
+<table class="table table-hover">
+    <tbody>
+        <% @admins.each do |admin| %>
+            <tr>
+                <th scope="row"><span class="uname"><img src="<%= admin.uimg %>" class="uimg"><%= admin.uname %></span></th>
+                <th style="vertical-align: middle;text-align: right;">
+                    <a href="mailto:<%= admin.email %>"><i class="far fa-envelope fa-lg fa-fw"></i></a>
+                    <% if admin.id != current_user.id %>
+                        <%= link_to '<i class="fas fa-sign-out-alt fa-lg fa-fw"></i>'.html_safe , admin_classroom_member_path(@classroom,admin, type: "admin"), method: :delete, data: {confirm: "確定剔除此人?"}, remote: true %>
+                    <% end %>
+                </th>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

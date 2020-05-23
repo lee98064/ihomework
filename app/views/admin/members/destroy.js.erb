@@ -1,0 +1,7 @@
+<% if @admins %>
+    $("#admins").html('<%= j render "admins" %>')
+<% elsif @teachers %>
+    $("#teachers").html('<%= j render "teachers" %>')
+<% elsif @students %>
+    $("#students").html('<%= j render "students" %>')
+<% end %>

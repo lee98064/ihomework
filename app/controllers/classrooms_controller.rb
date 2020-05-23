@@ -6,7 +6,7 @@ class  ClassroomsController < ApplicationController
 		if params[:admin]
 			@classrooms = Classroom.with_role([:admin,:teacher], current_user).includes(:user)
 		else
-			@classrooms = Classroom.with_role([:student], current_user).includes(:user)
+			@classrooms = Classroom.with_role(:student, current_user).includes(:user)
 		end
 		respond_to do |format|
 			format.html
