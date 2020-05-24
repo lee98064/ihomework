@@ -1,0 +1,32 @@
+<% provide :web_title, @weeknotesubject.title %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+		<h3 id="title"><%= @weeknotesubject['title'] %></h3>
+		<div id="describe">
+			<%= simple_format(@weeknotesubject['describe']) %>
+		</div>
+	</div>
+    <% @weeknotesubject.weeknotes.each do |weeknote| %>
+        <article class="uk-comment uk-comment-primary" style="min-height: 200px;">
+            <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid style="display:flex">
+                <div class="uk-width-auto uk-first-column" >
+                    <img class="uk-comment-avatar" src="<%= uimg(weeknote.user.try(:uimg)) %>" width="60" height="60" alt="">
+                </div>
+                <div class="uk-width-expand">
+                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><%= weeknote.user.try(:uname) %></a></h4>
+                    <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                        <li><%=weeknote.updated_at.to_s.split("+").first%></li>
+                        <li>評分</li>
+                    </ul>
+                </div>
+            </header>
+            <div class="uk-comment-body" style="font-size: 18px;">
+                <%= simple_format(weeknote.content) %>
+            </div>
+        </article>
+        <hr>
+    <% end %>
+</div>
+
+

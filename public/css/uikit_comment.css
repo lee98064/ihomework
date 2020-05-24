@@ -1,0 +1,256 @@
+/* ========================================================================
+   Component: Comment
+ ========================================================================== */
+/* Sections
+ ========================================================================== */
+.uk-comment-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.uk-comment-header {
+  margin-bottom: 20px;
+}
+/*
+ * Micro clearfix
+ */
+.uk-comment-body::before,
+.uk-comment-body::after,
+.uk-comment-header::before,
+.uk-comment-header::after {
+  content: "";
+  display: table;
+}
+.uk-comment-body::after,
+.uk-comment-header::after {
+  clear: both;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-comment-body > :last-child,
+.uk-comment-header > :last-child {
+  margin-bottom: 0;
+}
+/* Title
+ ========================================================================== */
+.uk-comment-title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+/* Meta
+ ========================================================================== */
+.uk-comment-meta {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #999;
+}
+/* Avatar
+ ========================================================================== */
+/* List
+ ========================================================================== */
+.uk-comment-list {
+  padding: 0;
+  list-style: none;
+}
+/* Adjacent siblings */
+.uk-comment-list > :nth-child(n+2) {
+  margin-top: 70px;
+}
+/*
+ * Sublists
+ * Note: General sibling selector allows reply block between comment and sublist
+ */
+.uk-comment-list .uk-comment ~ ul {
+  margin: 70px 0 0 0;
+  padding-left: 30px;
+  list-style: none;
+}
+/* Tablet and bigger */
+@media (min-width: 960px) {
+  .uk-comment-list .uk-comment ~ ul {
+    padding-left: 100px;
+  }
+}
+/* Adjacent siblings */
+.uk-comment-list .uk-comment ~ ul > :nth-child(n+2) {
+  margin-top: 70px;
+}
+/* Style modifier
+ ========================================================================== */
+.uk-comment-primary {
+  padding: 30px;
+  background: #fff;
+  color: #666;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.uk-width-expand {
+  flex: 1;
+  min-width: 1px;
+}
+
+.uk-subnav-divider {
+  margin-left: -41px;
+}
+
+.uk-margin-remove {
+  margin: 0 !important;
+}
+.uk-margin-remove-top {
+  margin-top: 0 !important;
+}
+
+.uk-width-auto {
+  width: auto;
+}
+
+a.uk-link-reset,
+.uk-link-reset a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.uk-flex-middle {
+  align-items: center;
+}
+
+/*
+ * Medium
+ */
+/* Horizontal */
+.uk-grid-medium,
+.uk-grid-column-medium {
+  margin-left: -30px;
+}
+.uk-grid-medium > *,
+.uk-grid-column-medium > * {
+  padding-left: 30px;
+}
+/* Vertical */
+.uk-grid + .uk-grid-medium,
+.uk-grid + .uk-grid-row-medium,
+.uk-grid-medium > .uk-grid-margin,
+.uk-grid-row-medium > .uk-grid-margin,
+* + .uk-grid-margin-medium {
+  margin-top: 30px;
+}
+
+/* ========================================================================
+   Component: Subnav
+ ========================================================================== */
+/*
+ * 1. Allow items to wrap into the next line
+ * 2. Gutter
+ * 3. Reset list
+ */
+.uk-subnav {
+  display: flex;
+  /* 1 */
+  flex-wrap: wrap;
+  /* 2 */
+  margin-left: -20px;
+  /* 3 */
+  padding: 0;
+  list-style: none;
+}
+/*
+ * 1. Space is allocated solely based on content dimensions: 0 0 auto
+ * 2. Gutter
+ * 3. Create position context for dropdowns
+ */
+.uk-subnav > * {
+  /* 1 */
+  flex: none;
+  /* 2 */
+  padding-left: 20px;
+  /* 3 */
+  position: relative;
+}
+/* Items
+ ========================================================================== */
+/*
+ * Items must target `a` elements to exclude other elements (e.g. dropdowns)
+ * Using `:first-child` instead of `a` to support `span` elements for text
+ * 1. Prevent gap if child element is `inline-block`, e.g. an icon
+ * 2. Style
+ */
+.uk-subnav > * > :first-child {
+  /* 1 */
+  display: block;
+  /* 2 */
+  color: #999;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  transition: 0.1s ease-in-out;
+  transition-property: color, background-color;
+}
+/* Hover + Focus */
+.uk-subnav > * > a:hover,
+.uk-subnav > * > a:focus {
+  color: #666;
+  text-decoration: none;
+  outline: none;
+}
+/* Active */
+.uk-subnav > .uk-active > a {
+  color: #333;
+}
+/* Divider modifier
+ ========================================================================== */
+/*
+ * Set gutter 
+ */
+.uk-subnav-divider {
+  margin-left: -41px;
+}
+/*
+ * Align items and divider vertically
+ */
+.uk-subnav-divider > * {
+  display: flex;
+  align-items: center;
+}
+/*
+ * Divider
+ * 1. `nth-child` makes it also work without JS if it's only one row
+ */
+.uk-subnav-divider > ::before {
+  content: "";
+  height: 1.5em;
+  margin-left: 0px;
+  margin-right: 20px;
+  border-left: 1px solid transparent;
+}
+/* 1 */
+.uk-subnav-divider > :nth-child(n+2):not(.uk-first-column)::before {
+  border-left-color: #e5e5e5;
+}
+/* Pill modifier
+ ========================================================================== */
+.uk-subnav-pill > * > :first-child {
+  padding: 5px 10px;
+  background: transparent;
+  color: #999;
+}
+/* Hover + Focus */
+.uk-subnav-pill > * > a:hover,
+.uk-subnav-pill > * > a:focus {
+  background-color: #f8f8f8;
+  color: #666;
+}
+/* OnClick */
+.uk-subnav-pill > * > a:active {
+  background-color: #f8f8f8;
+  color: #666;
+}
+/* Active */
+.uk-subnav-pill > .uk-active > a {
+  background-color: #1e87f0;
+  color: #fff;
+}
+/* Disabled
+ * The same for all style modifiers
+ ========================================================================== */
+.uk-subnav > .uk-disabled > a {
+  color: #999;
+}

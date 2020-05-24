@@ -43,7 +43,7 @@ class  Admin::WeeknotesController < Admin::AdminController
     end
 
     def set_weeknotesubject
-        @weeknotesubject = Weeknotesubject.includes(:weeknotes).find(params[:id])
+        @weeknotesubject = Weeknotesubject.includes(:user,:weeknotes => :user).find(params[:id])
     end
 
     def weeknotesubject_params

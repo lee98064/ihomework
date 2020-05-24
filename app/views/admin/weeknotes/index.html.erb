@@ -15,7 +15,7 @@
 				<%= simple_format(weeknotesubject['describe']) %>
 			</div>
 			<%= link_to '改週記', admin_classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm"%>
-			<span style="float:right;color: #28a745">已交:<%= weeknotesubject.weeknotes.size %>人</span>
+			<span style="float:right;color: #28a745">已交: <%= weeknotesubject.weeknotes.size %>人</span>
 		</div>
 	<% end %>
 </div>
