@@ -1,17 +1,41 @@
 <% provide :web_title, "管理成員" %>
 
 <div class="container" id="allmember" style="padding: 20px;margin-top: 70px;">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addmember" style="float:right;" onclick="addmember()">新增成員</button>
     <div id="admins">
         <%= render 'admins' %>
-    </div>
-    <div id="teachers">
-        <%= render 'teachers' %>
     </div>
     <div id="students">
         <%= render 'students' %>
     </div>
-    
 </div>
+
+<div class="modal fade" id="addmember" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">新增成員</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<%= admin_classroom_members_path(@classroom) %>" method="POST" id="addmemberform">
+        <div class="modal-body">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <div id="memberdata">
+
+            </div> 
+            <button class="btn btn-sm btn-success" onclick="addmember()" style="margin-top: 10px;">增加欄位</button>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary" id="membersubmit">送出</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <style>
     .uimg{
@@ -26,3 +50,30 @@
         align-items: center;
     }
 </style>
+
+<script>
+
+function addmember() {
+    $("#memberdata").append('<div class="input-group" style="margin-bottom: 10px;"><div class="input-group-prepend"><span class="input-group-text"><a onclick="removemember(this)"><i class="fas fa-trash fa-fw"></i></a></span></div><input type="text" aria-label="Email" class="form-control" name="members[][email]" placeholder="Email" required><select class="custom-select" id="inputGroupSelect01" name="members[][type]"><option value="admin">管理員</option><option value="student" selected>學生</option></select></div>')
+}
+
+function removemember(emt) {
+    $(emt).parents('.input-group').remove();
+    if ($("#memberdata").html().replace(/\s*/g, "") == ""){
+        $("#addmember").modal('hide');
+    }
+}
+</script>
+
+
+<!--<div class="input-group" style="margin-bottom: 10px;">
+    <div class="input-group-prepend">
+        <span class="input-group-text"><a onclick="removemember(this)"><i class="fas fa-trash fa-fw"></i></a></span>
+    </div>
+    <input type="text" aria-label="Email" class="form-control" name="email[]" required>
+    <select class="custom-select" id="inputGroupSelect01" name="type[]">
+        <option value="admin">管理員</option>
+        <option value="teacher">老師</option>
+        <option value="student" selected>學生</option>
+    </select>
+</div>-->

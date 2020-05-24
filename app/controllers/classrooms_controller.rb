@@ -4,9 +4,9 @@ class  ClassroomsController < ApplicationController
 	layout "classroom"
 	def index
 		if params[:admin]
-			@classrooms = Classroom.with_role([:admin,:teacher], current_user).includes(:user)
+			@classrooms = Classroom.with_role([:admin], current_user).includes(:user)
 		else
-			@classrooms = Classroom.with_role(:student, current_user).includes(:user)
+			@classrooms = Classroom.with_role([:admin,:student], current_user).includes(:user)
 		end
 		respond_to do |format|
 			format.html
@@ -50,7 +50,7 @@ class  ClassroomsController < ApplicationController
 	def addcode
 		classroom = Classroom.where(addcode: params[:addcode]).last
 		if classroom
-			current_user.add_role(:student, classroom)
+			current_user.add_role(:student, classroom) unless current_user.has_role?(:admin, classroom) or current_user.has_role?(:teacher, classroom)
 			json = {
 				success: true,
 				classroom: "/classrooms/" + classroom.id.to_s
@@ -67,7 +67,7 @@ class  ClassroomsController < ApplicationController
 
 	def set_classroom
 		@classroom = Classroom.find(params[:id])
-		if not current_user.has_any_role?({ :name => :student, :resource => @classroom }, { :name => :admin, :resource => @classroom }, { :name => :teacher, :resource => @classroom })
+		if not current_user.has_any_role?({ :name => :student, :resource => @classroom }, { :name => :admin, :resource => @classroom })
 			redirect_to classrooms_path
 		end
 	end

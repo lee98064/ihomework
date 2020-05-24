@@ -10,7 +10,7 @@ class  Admin::ClassroomsController < Admin::AdminController
 
     def set_classroom
         @classroom = Classroom.find(params[:id])
-		if not current_user.has_any_role?({ :name => :admin, :resource => @classroom }, { :name => :teacher, :resource => @classroom })
+		if not current_user.has_any_role?({ :name => :admin, :resource => @classroom })
 			redirect_to classrooms_path
 		end
     end

@@ -45,7 +45,7 @@ class  WeeknotesController < ApplicationController
 
 	def set_classroom
 		@classroom = Classroom.find(params[:classroom_id])
-		if not current_user.has_any_role?({ :name => :student, :resource => @classroom }, { :name => :admin, :resource => @classroom }, { :name => :teacher, :resource => @classroom })
+		if not current_user.has_any_role?({ :name => :student, :resource => @classroom }, { :name => :admin, :resource => @classroom })
 			redirect_to classrooms_path
 		end
 	end
