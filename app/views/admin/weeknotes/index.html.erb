@@ -1,0 +1,68 @@
+<% provide :web_title, "週記系統" %>
+<div class="container" style="padding: 20px;margin-top: 60px;">
+    <%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_admin_classroom_weeknote_path(@classroom), id: "newweeknotebtn"%>
+    <% @weeknotesubjects.each do |weeknotesubject| %>
+		<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+			<div style="display: flex;">
+				<img src="<%= weeknotesubject.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
+				<span style="line-height: 19px;">
+					<%= weeknotesubject.user.try(:uname)[-3..-1] %><br>
+					<%= weeknotesubject.created_at.to_s.split("+").first %>
+				</span>
+			</div>
+			<div id="describe">
+				<h5><%= weeknotesubject['title'] %></h5>
+				<%= simple_format(weeknotesubject['describe']) %>
+			</div>
+			<%= link_to '改週記', admin_classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm"%>
+			<span style="float:right;color: #28a745">已交:<%= weeknotesubject.weeknotes.size %>人</span>
+		</div>
+	<% end %>
+</div>
+
+
+
+
+
+
+
+<style>
+    #newweeknotebtn{
+        position: fixed;
+        left: -5px;
+        background-color: #007bff;
+        color: #FFF;
+        height: 35px;
+        width: 40px;
+        border-radius: 0 10px 10px 0;
+        z-index: 3;
+        text-align: center;
+        font-size: 22px;
+        transition: 0.3s;
+    }
+    #newweeknotebtn:hover{
+        left: 0;
+    }
+    #describe{
+        margin-top: 20px;
+        max-height: 250px;
+        overflow: scroll;
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        margin:80px 0 5px 0;
+    }
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        background: rgb(219,219,219);
+    }
+    #describe img{
+        width: 100%;
+        height: 100%;
+    }
+</style>

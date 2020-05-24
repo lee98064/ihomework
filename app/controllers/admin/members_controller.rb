@@ -3,7 +3,6 @@ class  Admin::MembersController < Admin::AdminController
 
     def index
         @admins = User.with_role(:admin, @classroom)
-        @teachers = User.with_role(:teacher, @classroom)
         @students = User.with_role(:student, @classroom)
     end
 

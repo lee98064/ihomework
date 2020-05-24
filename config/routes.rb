@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :weeknotes,only: [:index,:show] do
       post "/create", to: "weeknotes#insert", on: :member
     end
-    resources :members
+    resources :members, only: [:index]
     resources :lunchs
     resources :testlists
   end
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :classrooms,except: [:index,:new,:create] do
       resources :posts
       resources :members
+      resources :weeknotes
     end
   end
   

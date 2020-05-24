@@ -1,0 +1,6 @@
+<%= simple_form_for @weeknotesubject, :url => admin_classroom_weeknotes_path(@classroom,@weeknotesubject) , :method => :post do |f|%>
+  <%= f.input :title, label: '標題:'%>
+  <%= f.input :describe, label: '說明:' ,input_html: { rows: '7' }%>
+  
+  <%= f.button :submit, '送出', class: 'btn btn-primary'%>
+<% end %>

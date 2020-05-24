@@ -1,0 +1,39 @@
+<% provide :web_title, "教室成員" %>
+
+<div class="container" id="allmember" style="padding: 20px;margin-top: 70px;">
+    <div id="admins">
+        <%= render 'admins' %>
+    </div>
+    <div id="students">
+        <%= render 'students' %>
+    </div>
+</div>
+
+
+
+<style>
+    .uimg{
+        border-radius: 50%;
+        max-height: 35px;
+        max-width: 35px;
+        margin-right: 15px;
+    }
+    .uname{
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+
+<!--<div class="input-group" style="margin-bottom: 10px;">
+    <div class="input-group-prepend">
+        <span class="input-group-text"><a onclick="removemember(this)"><i class="fas fa-trash fa-fw"></i></a></span>
+    </div>
+    <input type="text" aria-label="Email" class="form-control" name="email[]" required>
+    <select class="custom-select" id="inputGroupSelect01" name="type[]">
+        <option value="admin">管理員</option>
+        <option value="teacher">老師</option>
+        <option value="student" selected>學生</option>
+    </select>
+</div>-->

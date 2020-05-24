@@ -15,7 +15,6 @@
           <span class="input-group-text"><%= vote_item.link_to_remove '<i class="fas fa-trash"></i>'.html_safe, data: {confirm: "確定刪除?"},style: "color: red;" %></span>
         </div>
         <%= vote_item.text_field :title, class: "form-control", placeholder: "名稱" %>
-        <%= vote_item.text_field :describe, class: "form-control", placeholder: "簡述" %>
         <%= vote_item.select(:color,[['綠', 'success'], ['藍', 'info'], ['黃', 'warning'], ['紅', 'danger'], ['灰', 'secondary']], {},{ :class => 'form-control' }) %>
       </div>
   <% end %>

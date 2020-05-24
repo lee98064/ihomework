@@ -21,6 +21,7 @@
       </div>
       <form action="<%= admin_classroom_members_path(@classroom) %>" method="POST" id="addmemberform">
         <div class="modal-body">
+            *您要新增的成員必須已註冊此網站方能加入成功
             <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <div id="memberdata">
 
