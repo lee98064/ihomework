@@ -26,7 +26,7 @@ class  ClassroomsController < ApplicationController
 		@classroom = current_user.classrooms.build(classroom_params)
 		if @classroom.save
 			current_user.add_role(:admin, @classroom)
-			redirect_to @classroom
+			redirect_to admin_classroom_path(@classroom)
 		else
 			render 'new'
 		end
