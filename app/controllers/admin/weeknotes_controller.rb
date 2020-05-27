@@ -27,10 +27,16 @@ class  Admin::WeeknotesController < Admin::AdminController
     end
 
     def update
+        if @weeknotesubject.update(weeknotesubject_params)
+            redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject),notice: "週記編輯成功!"
+        else
+            render 'edit',notice: "請檢查欄位是否填妥!"
+        end 
     end
 
     def destroy
-
+        @weeknotesubject.destroy
+        redirect_to admin_classroom_weeknotes_path(@classroom)
     end
 
     private

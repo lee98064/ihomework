@@ -6,6 +6,12 @@
 		<div id="describe">
 			<%= simple_format(@weeknotesubject['describe']) %>
 		</div>
+        <div class="uk-card-footer" style="padding: 5px">
+        <span style="float:right">
+            <%= link_to '<i class="fas fa-pen fa-fw" style="color: #666;"></i>'.html_safe, edit_admin_classroom_weeknote_path(@classroom,@weeknotesubject) %>
+            <%= link_to '<i class="fas fa-trash fa-fw" style="color: #666;"></i>'.html_safe, admin_classroom_weeknote_path(@classroom,@weeknotesubject), method: :delete, data: {confirm: "確定刪除?"} %>
+        </span>
+        </div>
 	</div>
     <% @weeknotesubject.weeknotes.each do |weeknote| %>
         <article class="uk-comment uk-comment-primary" style="min-height: 200px;">
@@ -21,7 +27,7 @@
                     </ul>
                 </div>
             </header>
-            <div class="uk-comment-body" style="font-size: 18px;">
+            <div class="uk-comment-body" style="font-size: 18px;max-height: 500px;overflow-y: scroll;">
                 <%= simple_format(weeknote.content) %>
             </div>
         </article>
