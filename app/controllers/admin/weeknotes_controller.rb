@@ -28,7 +28,6 @@ class  Admin::WeeknotesController < Admin::AdminController
 
     def update
         if @weeknotesubject.update(weeknotesubject_params)
-<<<<<<< HEAD
             redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject),notice: "更新成功!"
         else
             render 'edit'
@@ -49,17 +48,6 @@ class  Admin::WeeknotesController < Admin::AdminController
         unless @weeknote.update(weeknote_params)
             render 'checkpage'
         end
-=======
-            redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject),notice: "週記編輯成功!"
-        else
-            render 'edit',notice: "請檢查欄位是否填妥!"
-        end 
-    end
-
-    def destroy
-        @weeknotesubject.destroy
-        redirect_to admin_classroom_weeknotes_path(@classroom)
->>>>>>> 0f4039c01c23726bf0bb5eaf749779f70f8f95bb
     end
 
     private
