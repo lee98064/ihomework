@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     resources :classrooms,except: [:index,:new,:create] do
       resources :posts
       resources :members
-      resources :weeknotes
+      resources :weeknotes do
+        member do
+          get "checkpage"
+          post "check"
+        end
+      end
     end
   end
   

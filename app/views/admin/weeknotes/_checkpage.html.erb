@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">批改週記</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div id="#alert">
+  
+</div>
+<%= simple_form_for @weeknote, :url => check_admin_classroom_weeknote_path(@classroom,@weeknotesubject, weeknote_id: @weeknote.id) , remote: true, method: :post do |f|%>
+  <div class="modal-body">
+    <%= f.input :content, label: '學生內文:' ,input_html: { rows: '5' }, disabled: true%>
+    <%= f.input :suggest, label: '導師評語:' ,input_html: { rows: '5' }%>
+    <%= f.input :score, label: '得分:(可使用英文)'%>
+  </div>
+  <div class="modal-footer">
+    <%= f.button :submit, '儲存', class: 'btn btn-primary'%>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+  </div>
+<% end %>

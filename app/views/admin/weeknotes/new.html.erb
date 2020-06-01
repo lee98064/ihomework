@@ -3,7 +3,12 @@
 <div class="container" style="padding: 20px;margin-top: 60px;">
 	<h1>新增週記題目</h1>
 
-	<%= render 'form' %>
+	<%= simple_form_for @weeknotesubject, :url => admin_classroom_weeknotes_path(@classroom,@weeknotesubject) , :method => :post do |f|%>
+	  <%= f.input :title, label: '標題:'%>
+	  <%= f.input :describe, label: '說明:' ,input_html: { rows: '7' }%>
+	  
+	  <%= f.button :submit, '送出', class: 'btn btn-primary'%>
+	<% end %>
 
 	<%= link_to '取消', admin_classroom_weeknotes_path(@classroom) %>
 </div>

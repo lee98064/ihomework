@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_091516) do
+ActiveRecord::Schema.define(version: 2020_06_01_120518) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_091516) do
     t.integer "weeknotesubject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "score"
+    t.text "suggest"
   end
 
   create_table "weeknotesubjects", force: :cascade do |t|

@@ -1,6 +1,6 @@
 class  Admin::WeeknotesController < Admin::AdminController
     before_action :set_classroom
-    before_action :set_weeknotesubject, only: [:show,:edit,:update,:destroy]
+    before_action :set_weeknotesubject, only: [:show,:edit,:update,:destroy,:checkpage,:check]
 
     def index
         @weeknotesubjects = Weeknotesubject.includes(:user).where(classroom_id: @classroom.id).order("created_at DESC")
@@ -16,7 +16,7 @@ class  Admin::WeeknotesController < Admin::AdminController
     def create
         @weeknotesubject = @classroom.weeknotesubjects.build(weeknotesubject_params)
 		@weeknotesubject.user_id = current_user.id if current_user
-		if @weeknotesubject.save
+		if @weeknotesubject.saves
 			redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject), notice: "週記建立成功!"
 		else
 			render 'new', notice: "請檢查欄位是否都已填寫!"
@@ -27,10 +27,27 @@ class  Admin::WeeknotesController < Admin::AdminController
     end
 
     def update
-    end
+        if @weeknotesubject.update(weeknotesubject_params)
+            redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject),notice: "更新成功!"
+        else
+            render 'edit'
+        end
+    end 
 
     def destroy
+        @weeknotesubject.destroy
+        redirect_to admin_classroom_weeknotes_path(@classroom),notice: "刪除成功!"
+    end
 
+    def checkpage
+        @weeknote = Weeknote.where(id: params[:weeknote_id], weeknotesubject_id: @weeknotesubject.id).last
+    end
+
+    def check
+        @weeknote = Weeknote.where(id: params[:weeknote_id], weeknotesubject_id: @weeknotesubject.id).last
+        unless @weeknote.update(weeknote_params)
+            render 'checkpage'
+        end
     end
 
     private
@@ -49,4 +66,8 @@ class  Admin::WeeknotesController < Admin::AdminController
     def weeknotesubject_params
 		params.require(:weeknotesubject).permit(:title,:describe)
 	end
+
+    def weeknote_params
+        params.require(:weeknote).permit(:suggest,:score)
+    end
 end
