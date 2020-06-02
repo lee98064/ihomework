@@ -1,6 +1,4 @@
 <% provide :web_title , @post.title %>
-<link href="/js/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" rel="stylesheet">
-<script src="/js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 <div class="container" style="padding: 20px;margin-top: 60px;">
 	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
 		<h3 id="posttitle"><%= @post['title'] %></h3>
@@ -23,8 +21,6 @@
 		</div>
 	</div>
 </div>
-
-<script>hljs.initHighlightingOnLoad();</script>
 
 <style>
 	#postcontent{

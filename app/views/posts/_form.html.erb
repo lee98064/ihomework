@@ -1,6 +1,3 @@
-<script src="/js/ckeditor/ckeditor.js"></script>
-<link href="/js/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" rel="stylesheet">
-<script src="/js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 <%= simple_form_for([@classroom, @post]) do |f|%>
   <%= f.input :title, label: '標題:'%>
   <%= f.input :content, label: '內文:' ,input_html: { rows: '7' }%>
@@ -10,5 +7,7 @@
 
 
 <script>
-    CKEDITOR.replace( 'post[content]', {});
+	$(document).on('turbolinks:load', function () {
+		CKEDITOR.replace( 'post[content]', {});
+	});
 </script>

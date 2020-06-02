@@ -1,6 +1,4 @@
 <% provide :web_title, "所有公告" %>
-<link href="/js/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" rel="stylesheet">
-<script src="/js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 <div class="container" style="padding: 20px;margin-top: 60px;">
 	<%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_classroom_post_path(@classroom), id: "newpostbtn"%>
 	<% @posts.each do |post| %>
