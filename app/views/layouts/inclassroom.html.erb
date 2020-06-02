@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag 'inclassroom', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'classroom', 'data-turbolinks-track': 'reload'%>
     <script src="https://kit.fontawesome.com/27049cdd6d.js" crossorigin="anonymous"></script>
-    <script src="/js/ckeditor/ckeditor.js" data-turbolinks-track="reload"></script>
     <script src="/js/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js" data-turbolinks-track="reload"></script>
     <link rel="stylesheet" href="/js/ckeditor/plugins/codesnippet/lib/highlight/styles/pojoaque.css" data-turbolinks-track="reload">
     <!-- <script src="/js/uikit.min.js"></script> -->
@@ -48,10 +47,7 @@
     <% end %>
     <%= yield %>
     <script>
-      $(document).on('turbolinks:load', function () {
-         hljs.initHighlighting.called = false;
-         hljs.initHighlighting();
-      });
+      hljs.initHighlighting();
     </script>
   </body>
 </html>
