@@ -3,15 +3,12 @@ class  ClassroomsController < ApplicationController
 	before_action :set_classroom , only: [:show,:update,:edit] 
 	layout "classroom"
 	def index
-		if params[:admin]
-			@classrooms = Classroom.with_role([:admin], current_user).includes(:user)
-		else
-			@classrooms = Classroom.with_role([:admin,:student], current_user).includes(:user)
-		end
-		respond_to do |format|
-			format.html
-			format.js { render :layout => false }
-		end
+		@admins = Classroom.with_role([:admin], current_user).includes(:user)
+		@classrooms = Classroom.with_role([:admin,:student], current_user).includes(:user)
+		# respond_to do |format|
+		# 	format.html
+		# 	format.js { render :layout => false }
+		# end
 	end
 
 	def show
@@ -37,7 +34,7 @@ class  ClassroomsController < ApplicationController
 
 	def update
 		if @classroom.update(classroom_params)
-			redirect_to classroom_path(@classroom),notice: "修改成功！"
+			redirect_to classroom_path(@classroom), notice: "修改成功！"
 		else
 			render 'edit'
 		end

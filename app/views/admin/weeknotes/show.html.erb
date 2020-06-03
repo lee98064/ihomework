@@ -19,7 +19,12 @@
                     <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#"><%= weeknote.user.try(:uname) %></a></h4>
                     <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
                         <li><%=weeknote.updated_at.to_s.split("+").first%></li>
-                        <li><%= link_to '評分', checkpage_admin_classroom_weeknote_path(@classroom,@weeknotesubject, weeknote_id: weeknote.id), remote: true %></li>
+                        <% if weeknote.suggest? or weeknote.score? %>
+                            <li><%= link_to '已評分', checkpage_admin_classroom_weeknote_path(@classroom,@weeknotesubject, weeknote_id: weeknote.id), remote: true,style:"color: #28a745;" %></li>
+                        <% else %>
+                            <li><%= link_to '評分', checkpage_admin_classroom_weeknote_path(@classroom,@weeknotesubject, weeknote_id: weeknote.id), remote: true,style:"color: #dc3545" %></li>
+                        <% end %>
+                        
                     </ul>
                 </div>
             </header>

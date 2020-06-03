@@ -1,0 +1,21 @@
+<% provide :web_title, "編輯公告" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<h1>編輯公告</h1>
+
+	<script src="/js/ckeditor/ckeditor.js" data-turbolinks-track="reload"></script>
+	<%= simple_form_for @post, url: admin_classroom_post_path(@classroom,@post) do |f|%>
+	  <%= f.input :title, label: '標題:'%>
+	  <%= f.input :content, label: '內文:' ,input_html: { rows: '7' }%>
+	  
+	  <%= f.button :submit, '送出', class: 'btn btn-primary'%>
+	<% end %>
+
+
+	<script>
+		CKEDITOR.replace( 'post[content]', {});
+	</script>
+
+	<%= link_to '取消', admin_classroom_posts_path %>
+</div>
+

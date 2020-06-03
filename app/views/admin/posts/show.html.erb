@@ -1,0 +1,30 @@
+<% provide :web_title , @post.title %>
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+		<h3 id="posttitle"><%= @post['title'] %></h3>
+		<div id="postinfo">
+			<i class="fas fa-user fa-fw"></i><%= @post.user.try(:uname) %><br>
+			<i class="fas fa-calendar-alt fa-fw"></i><%=@post.created_at.to_s.split("+").first%><br>
+			<i class="fas fa-pen fa-fw"></i><%=@post.updated_at.to_s.split("+").first%><br>
+		</div>
+		<div id="postcontent">
+			<p><%= raw(@post['content']) %></p>
+		</div>
+			
+		<hr>
+		<div id="postfunction">
+		  	<%= link_to '編輯', edit_admin_classroom_post_path(@classroom,@post), class: "nav-link" %>
+		   	<%= link_to '刪除貼文', admin_classroom_post_path(@classroom,@post), method: :delete, class: "nav-link", data: {confirm: "確定刪除?"} %>
+		  	<%= link_to '返回', admin_classroom_posts_path, class: "nav-link" %>
+		</div>
+	</div>
+</div>
+
+<style>
+	#postcontent{
+		min-height: 450px;
+	}
+	#postfunction{
+		display: flex;
+	}
+</style>

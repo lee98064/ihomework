@@ -1,0 +1,14 @@
+<% provide :web_title, "編輯教室" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<h1>編輯教室</h1>
+
+	<%= simple_form_for @classroom, url: admin_classroom_path(@classroom) do |f|%>
+	  <%= f.input :name, label: '教室名稱:'%>
+	  <%= f.input :describe, label: '描述:' ,input_html: { rows: '7' }%>
+	  <%= f.input :addcode, label: '教室加入代碼:'%>
+	  <%= f.button :submit, '送出', class: 'btn btn-primary'%> <%= link_to '刪除教室', admin_classroom_path(@classroom), method: :delete, class: "btn btn-danger", data: {confirm: "確定刪除?"} %>
+	<% end %>
+
+	<%= link_to '取消', admin_classroom_path(@classroom) %>
+</div>
