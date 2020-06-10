@@ -15,11 +15,20 @@
 				<%= simple_format(weeknotesubject['describe']) %>
 			</div>
 			<%= link_to '寫週記', classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm"%>
+			<%= is_have_score?(weeknotesubject) %>
 			<%= is_finish_weeknote?(weeknotesubject) %>
 		</div>
 	<% end %>
 </div>
 
+
+<div class="modal fade" id="weeknote-score-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="weeknote-score-form">
+      
+    </div>
+  </div>
+</div>
 
 <style>
 	#describe{

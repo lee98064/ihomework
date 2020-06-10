@@ -16,7 +16,7 @@ class  Admin::WeeknotesController < Admin::AdminController
     def create
         @weeknotesubject = @classroom.weeknotesubjects.build(weeknotesubject_params)
 		@weeknotesubject.user_id = current_user.id if current_user
-		if @weeknotesubject.saves
+		if @weeknotesubject.save
 			redirect_to admin_classroom_weeknote_path(@classroom,@weeknotesubject), notice: "週記建立成功!"
 		else
 			render 'new', notice: "請檢查欄位是否都已填寫!"

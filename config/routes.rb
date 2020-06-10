@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :weeknotes,only: [:index,:show] do
       post "/create", to: "weeknotes#insert", on: :member
+      get "/score",to: "weeknotes#score", on: :member
     end
     resources :members, only: [:index]
     resources :lunchs

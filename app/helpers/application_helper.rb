@@ -20,6 +20,17 @@ module ApplicationHelper
 		end
 	end
 
+	def is_have_score?(weeknotesubject)
+		result = -1
+		weeknotesubject.weeknotes.each do |weeknote|
+			result = weeknote.user_id if weeknote.user_id == current_user.id && weeknote.score?
+			weeknoteid = weeknote.id
+		end
+		if result == current_user.id
+			link_to '看評分', score_classroom_weeknote_path(@classroom,weeknotesubject), class: "btn btn-secondary btn-sm",remote: true
+		end
+	end
+
 	def votetotal(items)
 		count = 0
 		items.each do |item|

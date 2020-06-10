@@ -41,6 +41,10 @@ class  WeeknotesController < ApplicationController
 		end
 	end
 
+	def score
+		@weeknote = Weeknote.find_or_initialize_by(weeknotesubject_id: @weeknotesubject.id, user_id: current_user.id)
+	end
+
 	private
 
 	def set_classroom
