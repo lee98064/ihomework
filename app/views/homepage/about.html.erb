@@ -1,0 +1,46 @@
+<% provide :web_title, "關於我們" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 align-self-center">
+			<h1 id="bigtitle">關於我們</h1>
+			<h3>
+				Ihomework的製作團隊
+			</h3>
+		</div>
+		<div class="col-md-1">
+			
+		</div>
+
+		<div class="col-md-6 ">
+        	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+				<div class="row">	
+					<div class="col-sm-6" style="text-align: center;">
+						<%= image_tag("homepagebg.png", width: 50,height: 50,style: "border-radius: 50%;") %>
+					</div>
+					<div class="col-sm-6">
+						<h4>李梓安</h4>
+						<hr>
+						<p>11112</p>
+					</div>
+				</div>
+			</div>
+		
+	    </div>
+	</div>
+</div>
+
+
+
+<style>
+  	body{
+      background-image: url('<%= image_path('homepagebg.png') %>');
+      background-repeat: no-repeat;
+      background-position:top -200px right -100px;
+      background-color: #F9F9F9;
+      height: 100vh;
+    }
+    #bigtitle{
+    	font-weight: bold;
+    }
+</style>

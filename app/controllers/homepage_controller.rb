@@ -5,4 +5,8 @@ class  HomepageController < ApplicationController
 		# p Rails.application.eager_load!
 		# p ActiveRecord::Base.descendants
 	end
+
+	def about
+		
+	end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 	root 'homepage#index'
+  get '/about', to: 'homepage#about'
   mount RailsAdmin::Engine => '/backend', as: 'rails_admin'
   devise_for :users, controllers: {
   	registrations: 'users/registrations',

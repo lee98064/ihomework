@@ -4,8 +4,8 @@
 		<h3 id="posttitle"><%= @post['title'] %></h3>
 		<div id="postinfo">
 			<i class="fas fa-user fa-fw"></i><%= @post.user.try(:uname) %><br>
-			<i class="fas fa-calendar-alt fa-fw"></i><%=@post.created_at.to_s.split("+").first%><br>
-			<i class="fas fa-pen fa-fw"></i><%=@post.updated_at.to_s.split("+").first%><br>
+			<i class="fas fa-calendar-alt fa-fw"></i><%=@post.created_at.strftime("%F %H:%M")%><br>
+			<i class="fas fa-pen fa-fw"></i><%=@post.updated_at.strftime("%F %H:%M")%><br>
 		</div>
 		<div id="postcontent">
 			<p><%= raw(@post['content']) %></p>
