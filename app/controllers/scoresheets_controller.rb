@@ -23,7 +23,7 @@ class ScoresheetsController < ApplicationController
 	def create
 		@scoresheet = @classroom.scoresheets.build(scoresheet_params)
 		@scoresheet.user_id = current_user.id
-		if @scoresheet.save!
+		if @scoresheet.save
 			redirect_to classroom_scoresheet_path(@classroom, @scoresheet), notice: "成績單新增成功!"
 		else
 			render 'new', notice: "成績單新增失敗!請檢查欄位是否都有填寫!"
