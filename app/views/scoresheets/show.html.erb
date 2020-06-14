@@ -1,0 +1,26 @@
+<% provide :web_title , @scoresheet.name %>
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+		<h2><%= @scoresheet.name %></h2>
+		<%= link_to '<i class="fas fa-file-excel fa-fw"></i>匯出成Excel'.html_safe ,classroom_scoresheet_path(@classroom,@scoresheet,format: :xls), class: "btn btn-success btn-sm",style:"margin-bottom: 10px;float:right" %>
+		<div class="table-responsive">
+			<table class="table table-hover">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">座號</th>
+			      <th scope="col">成績</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<% @scoresheet.scores.each do |score| %>
+			  		<tr>
+				      <th scope="row"><%= score.stunumber %></th>
+				      <td><%= score.score %></td>
+				    </tr>
+			  	<% end %>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+

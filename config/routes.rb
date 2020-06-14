@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get "/score",to: "weeknotes#score", on: :member
     end
     resources :members, only: [:index]
-    resources :lunchs
+    resources :scoresheets
     resources :testlists
   end
 

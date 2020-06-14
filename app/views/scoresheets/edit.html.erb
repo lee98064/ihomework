@@ -1,0 +1,9 @@
+<% provide :web_title, "編輯成績單" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<h1>編輯成績單</h1>
+	<%= render 'form' %>
+
+	<%= link_to '取消', classroom_scoresheet_path(@classroom,@scoresheet) %>
+</div>
+

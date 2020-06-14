@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_120518) do
+ActiveRecord::Schema.define(version: 2020_06_14_050339) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(version: 2020_06_01_120518) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.integer "stunumber"
+    t.integer "score"
+    t.integer "scoresheet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scoresheets", force: :cascade do |t|
+    t.string "name"
+    t.string "describe"
+    t.integer "user_id"
+    t.integer "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "testlists", force: :cascade do |t|
     t.string "title"
     t.text "describe"
@@ -60,7 +77,6 @@ ActiveRecord::Schema.define(version: 2020_06_01_120518) do
     t.string "encrypted_password", default: "", null: false
     t.string "google_uid"
     t.string "google_token"
-    t.boolean "admin", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

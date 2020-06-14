@@ -1,0 +1,23 @@
+<%= nested_form_for([@classroom, @scoresheet]) do |f|%>
+  <div class="form-group">
+      <%= f.label :name, '名稱:'%>
+      <%= f.text_field :name, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+      <%= f.label :describe, '描述:'%>
+      <%= f.text_field :describe, class: "form-control" , rows: "5" %>
+  </div>
+  
+  <%= f.fields_for :scores do |score| %>
+      <div class="input-group" style="margin-bottom: 10px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><%= score.link_to_remove '<i class="fas fa-trash"></i>'.html_safe, data: {confirm: "確定刪除?"},style: "color: red;" %></span>
+        </div>
+        <%= score.number_field :stunumber, class: "form-control", placeholder: "座號" %>
+        <%= score.number_field :score, class: "form-control", placeholder: "成績" %>
+      </div>
+  <% end %>
+  <%= f.link_to_add '<i class="fas fa-plus fa-fw"></i>選項'.html_safe, :scores ,class: "btn btn-info" %>
+  <%= f.submit "提交", disable_with: "提交中...", class: "btn btn-primary" %>
+<% end %>

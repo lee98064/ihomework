@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stunumber: 1
+  score: 1
+  scoresheet_id: 1
+
+two:
+  stunumber: 1
+  score: 1
+  scoresheet_id: 1

@@ -1,0 +1,49 @@
+<% provide :web_title , "成績冊" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<%= link_to '<i class="fas fa-plus fa-fw"></i>'.html_safe, new_classroom_scoresheet_path(@classroom), id: "newscoresheetbtn"%>
+	<% @scoresheets.each do |scoresheet| %>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+			<div style="display: flex;">
+				<img src="<%= scoresheet.user.try(:uimg)%>" height="40px" width="40px" style="border-radius: 50%;margin-right: 10px;">
+				<span style="line-height: 19px;">
+					<%= scoresheet.user.try(:uname)[-3..-1] %><br>
+					<%= scoresheet.created_at.strftime("%F %H:%M") %>
+				</span>
+			</div>
+			<div id="describe">
+				<h5><%= scoresheet.name %></h5>
+				<%= scoresheet.describe %>
+			</div>
+			<%= link_to '查看成績', classroom_scoresheet_path(@classroom,scoresheet), class: "btn btn-secondary btn-sm" %> 
+			<%= link_to '編輯成績', edit_classroom_scoresheet_path(@classroom,scoresheet), class: "btn btn-warning btn-sm" if scoresheet.user_id == current_user.id %>
+			<%= link_to '刪除成績', classroom_scoresheet_path(@classroom,scoresheet), method: :delete,data:{ confirm: "確定刪除?" }  ,class: "btn btn-danger btn-sm" if scoresheet.user_id == current_user.id %>
+		</div>
+    <% end %>
+</div>
+
+
+
+<style>
+	#newscoresheetbtn{
+		position: fixed;
+	    left: -5px;
+	    background-color: #007bff;
+	    color: #FFF;
+	    height: 35px;
+	    width: 40px;
+	    border-radius: 0 10px 10px 0;
+	    z-index: 3;
+	    text-align: center;
+	    font-size: 22px;
+	    transition: 0.3s;
+	}
+	#newscoresheetbtn:hover{
+		left: 0;
+	}
+	#describe{
+		margin-top:10px;
+		margin-bottom: 10px;
+		padding-top: 10px;
+	}
+</style>

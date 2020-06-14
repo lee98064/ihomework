@@ -9,6 +9,7 @@ class Classroom < ApplicationRecord
 	has_many :testlists, dependent: :destroy
 	has_many :weeknotesubjects, dependent: :destroy
 	has_many :votes, dependent: :destroy
+	has_many :scoresheets, dependent: :destroy
 	def createaddcode
 		code = SecureRandom.hex(3)
 		classroom = Classroom.where(addcode: code)

@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="<%= @scoresheet.name %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">座號</Data></Cell>
+        <Cell><Data ss:Type="String">成績</Data></Cell>
+      </Row>
+      <% @scoresheet.scores.each do |score| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= score.stunumber %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= score.score %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

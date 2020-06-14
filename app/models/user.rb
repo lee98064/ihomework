@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :testlists, dependent: :destroy
   has_many :weeknotesubjects, dependent: :destroy
   has_many :weeknotes, dependent: :destroy
+  has_many :scoresheets,dependent: :destroy
   
   def name
 		self.uname
