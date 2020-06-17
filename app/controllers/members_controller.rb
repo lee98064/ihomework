@@ -8,7 +8,15 @@ class  MembersController < ApplicationController
         @students = User.with_role(:student, @classroom)
     end
 
-
+    def destroy
+        case params[:type]
+        when "admin"
+            current_user.remove_role(:admin, @classroom) if current_user.id != current_user.id
+        when "student" 
+            current_user.remove_role(:student, @classroom)
+        end
+        redirect_to classrooms_path, notice: "操作成功!"
+    end
 
     private
     def set_classroom

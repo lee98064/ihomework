@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       post "/create", to: "weeknotes#insert", on: :member
       get "/score",to: "weeknotes#score", on: :member
     end
-    resources :members, only: [:index]
+    resources :members, only: [:index,:destroy]
     resources :scoresheets
     resources :testlists
   end

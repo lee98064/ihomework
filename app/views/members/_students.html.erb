@@ -6,6 +6,7 @@
                 <th scope="row"><span class="uname"><img src="<%= uimg(student.uimg) %>" class="uimg"><%= student.uname %></span></th>
                 <th style="vertical-align: middle;text-align: right;">
                     <a href="mailto:<%= student.email %>"><i class="far fa-envelope fa-lg fa-fw"></i></a>
+                    <%= link_to '<i class="fas fa-sign-out-alt fa-lg fa-fw"></i>'.html_safe , classroom_member_path(@classroom,student, type: "student"), method: :delete, data: {confirm: "確定退出教室?"} if student.id == current_user.id %>
                 </th>
             </tr>
         <% end %>
