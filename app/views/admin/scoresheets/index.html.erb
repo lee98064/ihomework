@@ -1,0 +1,30 @@
+<% provide web_title: "成績管理" %>
+
+<div class="container" style="padding: 20px;margin-top: 60px;">
+	<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="margin-bottom: 20px;">
+		<h2>所有成績</h2>
+		<table class="table table-hover">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col" align="center">新增者</th>
+		      <th scope="col" align="center">名稱</th>
+		      <th scope="col" align="center">操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @scoresheets.each do |scoresheet| %>
+			  	<tr>
+			      	<th scope="row"><%= image_tag(scoresheet.user.try(:uimg),width: 25,height: 25,class: "rounded-circle",style: "margin-right: 10px;") %><%= scoresheet.user.try(:uname) %></th>
+			      	<td><%= scoresheet.name %></td>
+			      	<td align="center">
+						<div class="btn-group" role="group">
+							<%= link_to "編輯",edit_admin_classroom_scoresheet_path(@classroom,scoresheet),class: "btn btn-warning btn-sm" %>
+							<%= link_to "刪除",admin_classroom_scoresheet_path(@classroom,scoresheet), method: :DELETE ,class: "btn btn-danger btn-sm",data:{confirm: "確定刪除嗎?"} %>
+						</div>
+				  	</td>
+			    </tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>

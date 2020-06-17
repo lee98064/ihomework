@@ -25,7 +25,7 @@
           <a href="<%= classroom_votes_path(@classroom) %>"><i class="fas fa-vote-yea fa-fw"></i>管理投票</a>
           <a href="<%= admin_classroom_weeknotes_path(@classroom) %>"><i class="fas fa-book-reader fa-fw"></i>週記系統</a>
           <a href="<%= admin_classroom_members_path(@classroom) %>"><i class="fas fa-users fa-fw"></i>管理成員</a>
-          <a href="<%= classroom_scoresheets_path(@classroom) %>"><i class="fas fa-file-excel fa-fw"></i>成績系統</a>
+          <a href="<%= admin_classroom_scoresheets_path(@classroom) %>"><i class="fas fa-file-excel fa-fw"></i>成績管理</a>
           <a href="<%= edit_admin_classroom_path(@classroom) %>"><i class="fas fa-cog fa-fw"></i>教室設定</a>
           <a href="/users/sign_out" data-confirm="確定要登出嗎?"><img id="uimg" src="<%= uimg(current_user.uimg) %>"><%= current_user.uname[-3..-1] %></a>
         </div>
