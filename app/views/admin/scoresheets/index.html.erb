@@ -14,7 +14,7 @@
 		  <tbody>
 		  	<% @scoresheets.each do |scoresheet| %>
 			  	<tr>
-			      	<th scope="row"><%= image_tag(scoresheet.user.try(:uimg),width: 25,height: 25,class: "rounded-circle",style: "margin-right: 10px;") %><%= scoresheet.user.try(:uname) %></th>
+			      	<th scope="row"><%= image_tag(uimg(scoresheet.user.try(:uimg)),width: 25,height: 25,class: "rounded-circle",style: "margin-right: 10px;") %><%= uimg(scoresheet.user.try(:uname)) %></th>
 			      	<td><%= scoresheet.name %></td>
 			      	<td align="center">
 						<div class="btn-group" role="group">
