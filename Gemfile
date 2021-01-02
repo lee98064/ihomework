@@ -86,3 +86,5 @@ gem 'jquery-ui-rails'
 gem 'nested_form'
 
 gem 'bootstrap-email'
+
+gem 'dotenv-rails'
